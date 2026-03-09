@@ -402,4 +402,4 @@ cp -r the-product-playbook/commands/* ~/.claude/commands/
 
 ---
 
-Copyright (c) 2026 Charles Chen. All rights reserved.
+Copyright (c) 2026 Charles Chen.
