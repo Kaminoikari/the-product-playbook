@@ -32,22 +32,11 @@ The Product Playbook 是一個 **Claude AI Skill**，能夠系統性地引導你
 
 ## 🎬 Demo
 
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📍 快速模式 ｜ 進度 S2 / S3
-✅ S1：JTBD 陳述（已完成）
-▶️ S2：PR-FAQ（進行中）
-⬜ S3：North Star Metric + Aha Moment
-⬜ 完成後 → 一頁式方向摘要產出
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<p align="center">
+  <img src="assets/demo.gif" alt="The Product Playbook Demo — Quick Mode" width="800">
+</p>
 
-## MortgageSnap 讓首購族 3 分鐘搞懂自己買得起什麼房
-
-**副標題**：不用跑銀行、不用等試算表回覆，深夜也能和伴侶一起看清楚每月還款數字
-
-**正文第一段（Aha Moment）**：
-小陳在深夜滑完一輪 591，看到心動的房子但不知道自己到底負擔得起...
-```
+> 上圖展示**快速模式**：一句指令 → JTBD 陳述 → PR-FAQ → North Star → 一頁式方向摘要，約 30 分鐘內完成。
 
 ---
 
@@ -115,6 +104,8 @@ the-product-playbook/
 ├── SKILL.md                          # 主控核心：模式定義、步驟序列、指令系統
 ├── LICENSE                           # MIT License
 ├── README.md                         # 本文件
+├── assets/
+│   └── demo.gif                      # README 動態展示圖
 ├── commands/                         # Claude Code CLI Slash Commands（可選安裝）
 │   ├── product-quick.md              # /product-quick — 快速模式
 │   ├── product-full.md               # /product-full — 完整模式
