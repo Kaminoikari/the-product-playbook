@@ -1,0 +1,35 @@
+{
+  "name": "the-product-playbook",
+  "version": "1.0.0",
+  "description": "世界頂尖產品規劃實作框架引導工具 for Claude Code",
+  "bin": {
+    "the-product-playbook": "./install.sh"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "product",
+    "pm",
+    "skill",
+    "framework",
+    "product-management",
+    "planning"
+  ],
+  "author": "Charles Chen",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaminoikari/the-product-playbook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kaminoikari/the-product-playbook/issues"
+  },
+  "homepage": "https://github.com/kaminoikari/the-product-playbook#readme",
+  "files": [
+    "install.sh",
+    "SKILL.md",
+    "commands/",
+    "references/",
+    "LICENSE"
+  ]
+}

@@ -51,29 +51,41 @@ The Product Playbook 是一個 **Claude AI Skill**，能夠系統性地引導你
 
 ### 方法二：Claude Code Skill（推薦）
 
-#### 方法 2a — Terminal 直接安裝
+#### 一鍵安裝（推薦）
 
 ```bash
-# 一鍵安裝（Skill + Slash Commands）
+# 方式一：curl
+curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash
+
+# 方式二：npx（需要 Node.js）
+npx the-product-playbook
+```
+
+更新也是同一行指令，重新執行即可。
+
+解除安裝：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash -s -- --uninstall
+# 或
+npx the-product-playbook --uninstall
+```
+
+#### 手動安裝
+
+<details>
+<summary>展開手動安裝步驟</summary>
+
+```bash
 git clone https://github.com/kaminoikari/the-product-playbook.git
 mkdir -p ~/.claude/skills ~/.claude/commands
 cp -r the-product-playbook ~/.claude/skills/the-product-playbook
 cp the-product-playbook/commands/* ~/.claude/commands/
 ```
 
-#### 方法 2b — 在 Claude Code 中自動安裝
+</details>
 
-啟動 Claude Code 後，貼上以下內容讓 Claude 自動執行：
-
-```
-請幫我安裝 the-product-playbook skill：
-git clone https://github.com/kaminoikari/the-product-playbook.git
-mkdir -p ~/.claude/skills ~/.claude/commands
-cp -r the-product-playbook ~/.claude/skills/the-product-playbook
-cp the-product-playbook/commands/* ~/.claude/commands/
-```
-
-在 Claude Code 中觸發：
+安裝完成後，在 Claude Code 中觸發：
 
 ```bash
 # Skill 主指令
@@ -103,18 +115,6 @@ cp the-product-playbook/commands/* ~/.claude/commands/
 使用：`/product-quick 我想做一個記帳 App`
 
 > 注意：Slash Commands 會引用 `~/.claude/skills/the-product-playbook/` 路徑中的 SKILL.md，所以建議搭配方法二一起安裝。
-
-### 更新到最新版本
-
-如果你之前已安裝過，執行以下指令即可同步更新：
-
-```bash
-cd the-product-playbook && git pull
-cp -r . ~/.claude/skills/the-product-playbook/
-cp commands/* ~/.claude/commands/
-```
-
-> 更新不會影響你之前的產品規劃檔案或進度，只會更新 Skill 本身的指令和框架內容。
 
 ---
 
