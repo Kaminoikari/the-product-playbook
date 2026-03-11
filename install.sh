@@ -97,6 +97,7 @@ do_install() {
   # 判斷來源：本地 repo 或遠端 clone
   local src_dir=""
   local script_dir=""
+  local commit_hash=""
 
   # 取得腳本所在目錄（如果是檔案執行而非 pipe）
   if [ -f "${BASH_SOURCE[0]:-}" ]; then
@@ -107,19 +108,35 @@ do_install() {
   if [ -n "$script_dir" ] && [ -f "$script_dir/SKILL.md" ]; then
     info "偵測到本地 repo，使用本地檔案安裝..."
     src_dir="$script_dir"
+    commit_hash=$(git -C "$src_dir" rev-parse --short HEAD 2>/dev/null || echo "unknown")
   else
     info "從 GitHub 下載最新版本..."
     git clone --depth 1 "$REPO_URL" "$TMP_DIR" 2>/dev/null
     src_dir="$TMP_DIR"
-    # 顯示版本
-    local commit_hash commit_date
     commit_hash=$(git -C "$src_dir" rev-parse --short HEAD 2>/dev/null || echo "unknown")
+    local commit_date
     commit_date=$(git -C "$src_dir" log -1 --format='%ci' 2>/dev/null | cut -d' ' -f1 || echo "unknown")
     ok "版本：$commit_hash ($commit_date)"
   fi
 
   # 建立目錄
   mkdir -p "$SKILL_DIR" "$COMMANDS_DIR"
+
+  # 版本比對：已是最新版本則跳過安裝
+  if [ -f "$SKILL_DIR/.version" ]; then
+    local installed_version
+    installed_version=$(cat "$SKILL_DIR/.version")
+    if [ "$installed_version" = "$commit_hash" ] && [ "$commit_hash" != "unknown" ]; then
+      ok "已是最新版本 ($commit_hash)，無需更新。"
+      printf "\n已安裝：\n"
+      printf "  Skill      → ${BOLD}%s${RESET}\n" "$SKILL_DIR"
+      printf "  Commands   → ${BOLD}%s${RESET}/product-*.md\n" "$COMMANDS_DIR"
+      printf "\n開始使用：\n"
+      printf "  ${BOLD}claude${RESET} 啟動 Claude Code，然後輸入：\n"
+      printf "  ${BLUE}/product-quick 我想做一個記帳 App${RESET}\n\n"
+      return 0
+    fi
+  fi
 
   # 清除舊安裝
   if [ -d "$SKILL_DIR" ]; then
@@ -140,6 +157,11 @@ do_install() {
 
   if [ -d "$src_dir/commands" ]; then
     cp -r "$src_dir/commands" "$SKILL_DIR/"
+  fi
+
+  # 寫入版本標記
+  if [ "$commit_hash" != "unknown" ]; then
+    echo "$commit_hash" > "$SKILL_DIR/.version"
   fi
 
   ok "Skill 已安裝至 $SKILL_DIR"
