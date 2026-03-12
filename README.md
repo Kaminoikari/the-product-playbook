@@ -33,10 +33,10 @@ The Product Playbook 是一個 **Claude AI Skill**，能夠系統性地引導你
 ## 🎬 Demo
 
 <p align="center">
-  <img src="assets/demo.gif" alt="The Product Playbook Demo — Quick Mode" width="800">
+  <img src="assets/demo-build.gif" alt="The Product Playbook Demo — Build Mode" width="800">
 </p>
 
-> 上圖展示**快速模式**：一句指令 → JTBD 陳述 → PR-FAQ → North Star → 一頁式方向摘要，約 30 分鐘內完成。
+> 上圖展示**直接實作模式**：輸入需求 → 掃描 codebase → 偵測技術棧 → 引用框架進行問題釐清，直接進入解法設計。
 
 ---
 

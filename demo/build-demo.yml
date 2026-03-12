@@ -1,0 +1,166 @@
+config:
+  cols: 88
+  rows: 30
+  repeat: 0
+  quality: 100
+  frameDelay: auto
+  maxIdleTime: 4000
+  frameBox:
+    type: floating
+    title: "claude — ~/my-ecommerce-project"
+    style:
+      boxShadow: none
+      margin: 0px auto 0
+      padding: 0px
+  cursorStyle: block
+  fontFamily: "'Fira Code', 'Cascadia Code', monospace"
+  fontSize: 13
+  lineHeight: 1.2
+  letterSpacing: 0
+  theme:
+    background: "#0d1117"
+    foreground: "#c9d1d9"
+    cursor: "#58a6ff"
+    black: "#0d1117"
+    red: "#ff7b72"
+    green: "#3fb950"
+    yellow: "#e3b341"
+    blue: "#79c0ff"
+    magenta: "#d2a8ff"
+    cyan: "#56d364"
+    white: "#c9d1d9"
+    brightBlack: "#6e7681"
+    brightRed: "#ffa198"
+    brightGreen: "#56d364"
+    brightYellow: "#e3b341"
+    brightBlue: "#79c0ff"
+    brightMagenta: "#d2a8ff"
+    brightCyan: "#56d364"
+    brightWhite: "#f0f6fc"
+
+records:
+  # === 0.0s：Prompt 出現 ===
+  - delay: 600
+    content: "\u001b[32m❯\u001b[0m "
+
+  # === 0.6–2.5s：逐字輸入指令 ===
+  - delay: 350
+    content: "/"
+  - delay: 90
+    content: "p"
+  - delay: 75
+    content: "r"
+  - delay: 80
+    content: "o"
+  - delay: 75
+    content: "d"
+  - delay: 80
+    content: "u"
+  - delay: 75
+    content: "c"
+  - delay: 80
+    content: "t"
+  - delay: 75
+    content: "-"
+  - delay: 80
+    content: "b"
+  - delay: 75
+    content: "u"
+  - delay: 80
+    content: "i"
+  - delay: 75
+    content: "l"
+  - delay: 80
+    content: "d"
+  - delay: 220
+    content: " "
+  - delay: 120
+    content: "我想在現有電商系統加上即時通知功能"
+
+  # === 2.5s：Enter，啟動 ===
+  - delay: 700
+    content: "\r\n"
+  - delay: 300
+    content: "\u001b[1m\u001b[35m⚡ 直接實作模式啟動中...\u001b[0m\r\n"
+  - delay: 400
+    content: "\u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m\r\n"
+
+  # === 4.0–10.0s：掃描 codebase ===
+  - delay: 500
+    content: "\u001b[36m📂 掃描專案目錄...\u001b[0m\r\n"
+  - delay: 700
+    content: "   \u001b[32m✓\u001b[0m \u001b[34mpackage.json\u001b[0m         → Node.js 18 · Express 4.18 · PostgreSQL\r\n"
+  - delay: 800
+    content: "   \u001b[32m✓\u001b[0m \u001b[34mprisma/schema.prisma\u001b[0m → 偵測到 \u001b[33mUser\u001b[0m、\u001b[33mOrder\u001b[0m、\u001b[33mProduct\u001b[0m 資料表\r\n"
+  - delay: 700
+    content: "   \u001b[32m✓\u001b[0m \u001b[34msrc/api/routes/\u001b[0m      → 找到 12 個 REST endpoints\r\n"
+  - delay: 800
+    content: "   \u001b[32m✓\u001b[0m \u001b[34msrc/services/\u001b[0m        → WebSocket \u001b[31m✗ 尚未設定\u001b[0m\r\n"
+  - delay: 700
+    content: "   \u001b[32m✓\u001b[0m \u001b[34msrc/services/\u001b[0m        → 通知系統 \u001b[31m✗ 尚未設定\u001b[0m\r\n"
+  - delay: 500
+    content: "\r\n"
+
+  # === 10.0–13.0s：技術棧摘要 ===
+  - delay: 400
+    content: "\u001b[1m\u001b[36m🔍 技術棧確認\u001b[0m\r\n"
+  - delay: 350
+    content: "   框架      \u001b[33mExpress.js 4.18\u001b[0m\r\n"
+  - delay: 300
+    content: "   資料庫    \u001b[33mPostgreSQL via Prisma ORM\u001b[0m\r\n"
+  - delay: 300
+    content: "   即時通訊  \u001b[31m未建置\u001b[0m\r\n"
+  - delay: 300
+    content: "   通知系統  \u001b[31m未建置\u001b[0m\r\n"
+  - delay: 500
+    content: "\r\n"
+
+  # === 13.0–17.0s：進度指示器 + S1 ===
+  - delay: 400
+    content: "\u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m\r\n"
+  - delay: 300
+    content: "\u001b[1m📍 直接實作模式  ｜  進度 S1 / S7\u001b[0m\r\n"
+  - delay: 250
+    content: "\u001b[32m▶️  S1：確認問題陳述\u001b[0m\u001b[90m（進行中）\u001b[0m\r\n"
+  - delay: 200
+    content: "\u001b[90m⬜ S2：PR-FAQ\u001b[0m\r\n"
+  - delay: 200
+    content: "\u001b[90m⬜ S3：平行解法\u001b[0m\r\n"
+  - delay: 200
+    content: "\u001b[90m⬜ S4：Pre-mortem（基於你的架構）\u001b[0m\r\n"
+  - delay: 200
+    content: "\u001b[90m⬜ S5：GEM + RICE 優先排序\u001b[0m\r\n"
+  - delay: 200
+    content: "\u001b[90m⬜ S6：MVP + Not Doing List\u001b[0m\r\n"
+  - delay: 200
+    content: "\u001b[90m⬜ S7：North Star + Aha Moment\u001b[0m\r\n"
+  - delay: 300
+    content: "\u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m\r\n"
+  - delay: 600
+    content: "\r\n"
+
+  # === 17.0–27.0s：第一個問題 ===
+  - delay: 400
+    content: "根據掃描結果，你的系統目前有完整的 \u001b[33mUser ↔ Order\u001b[0m 關聯，\r\n"
+  - delay: 600
+    content: "但缺少 WebSocket 和推播機制。\r\n"
+  - delay: 700
+    content: "\r\n"
+  - delay: 500
+    content: "「即時通知」這個功能有幾個方向，我需要先確認邊界：\r\n"
+  - delay: 700
+    content: "\r\n"
+  - delay: 600
+    content: "  \u001b[1m\u001b[36m1️⃣  訂單狀態更新通知\u001b[0m（推播至前端 UI）\r\n"
+  - delay: 700
+    content: "  \u001b[1m\u001b[36m2️⃣  系統事件觸發通知\u001b[0m（Email / SMS）\r\n"
+  - delay: 700
+    content: "  \u001b[1m\u001b[36m3️⃣  兩者都要\u001b[0m，統一通知中樞\r\n"
+  - delay: 800
+    content: "\r\n"
+  - delay: 500
+    content: "\u001b[90m（輸入 1 / 2 / 3，或直接描述）\u001b[0m "
+
+  # === 27.0–30.0s：等待輸入，游標閃爍 ===
+  - delay: 3000
+    content: ""
