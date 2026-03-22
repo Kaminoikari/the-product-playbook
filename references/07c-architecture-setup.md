@@ -43,6 +43,71 @@
 | 服務 | 用途 | 對應功能 |
 |------|------|---------|
 | | | |
+
+## 安全架構
+
+### CORS 配置
+
+| 設定項 | 值 | 說明 |
+|--------|---|------|
+| 允許的 Origins | [生產域名, localhost:port] | 不使用 wildcard * |
+| 允許的 Methods | GET, POST, PUT, DELETE | 依 API 實際需求 |
+| 允許的 Headers | Content-Type, Authorization | |
+| Credentials | true/false | 依認證方式決定 |
+
+### 安全性 Headers
+
+[根據產品需求，從 references/08-security-checklist.md §5 選擇適用的 Headers]
+
+### Rate Limiting 策略
+
+| 端點類型 | 限制 | 識別方式 |
+|---------|------|---------|
+| 一般 API | [X] req/min | IP + User ID |
+| 登入/註冊 | [X] req/min | IP |
+| 檔案上傳 | [X] req/min | User ID |
+
+### 敏感資料處理
+
+- 密鑰管理：[.env + 平台環境變數 / Secrets Manager]
+- 日誌規範：不記錄密碼、Token、個人資料
+- 資料加密：[傳輸中 TLS / 儲存時加密需求]
+
+> 完整安全性檢查清單見 `references/08-security-checklist.md`
+```
+
+---
+
+## 📄 .gitignore 模板
+
+```gitignore
+# 環境變數與密鑰
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# 產品規劃進度（可能包含敏感商業資訊）
+.product-playbook-progress.md
+
+# IDE 與作業系統
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# 依賴
+node_modules/
+__pycache__/
+*.pyc
+venv/
+
+# 建置產出
+dist/
+build/
+.next/
 ```
 
 ---
