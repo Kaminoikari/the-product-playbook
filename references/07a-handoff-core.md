@@ -25,12 +25,13 @@
 
 ```
 [project-name]/
+├── .gitignore             # 版控排除清單（.env、secrets、進度檔等，模板見 references/07c-architecture-setup.md）
 ├── CLAUDE.md              # Claude Code 的專案記憶檔：產品上下文 + 開發規範
 ├── TASKS.md               # 功能拆解 + Phase 分期 + 逐 Task 驗收標準
 ├── TICKETS.md             # 開票內容：每張票的標題、描述、驗收標準，PM 可直接開票
 ├── docs/
 │   ├── PRD.md             # 完整 PRD（從 04-develop.md 產出格式整合）
-│   ├── ARCHITECTURE.md    # 技術架構：目錄結構 + DB schema + API endpoints
+│   ├── ARCHITECTURE.md    # 技術架構：目錄結構 + DB schema + API endpoints + 安全架構
 │   └── PRODUCT-SPEC.md    # 產品規格摘要（從 05-deliver.md → 4.6 整合）
 └── scripts/
     └── setup.sh           # 一鍵初始化腳本（建立目錄 + 安裝 dependencies）
@@ -90,6 +91,15 @@ CLAUDE.md 是 Claude Code 的專案記憶檔，Claude Code 每次啟動時會自
 
 - ⚠️ [風險 1]：[預防措施]
 - ⚠️ [風險 2]：[預防措施]
+
+## 安全性備註
+
+> 完整安全性檢查清單見 `references/08-security-checklist.md`，以下為本產品的關鍵安全性決策：
+
+- 認證方式：[JWT / Session / OAuth]
+- CORS 政策：[允許的 Origins]
+- Rate Limiting：[策略摘要]
+- 敏感資料：[處理方式]
 
 ## 開發流程
 

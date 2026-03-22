@@ -15,7 +15,10 @@
 > 目標：建立可運行的空白專案骨架
 
 - [ ] **T0.1** 初始化專案（`scripts/setup.sh` 或手動）
-  - 驗收：`npm run dev` / `python manage.py runserver` 等指令可啟動
+  - 驗收：
+    - [ ] `npm run dev` / `python manage.py runserver` 等指令可啟動
+    - [ ] `.gitignore` 已建立，包含 `.env`、`.env.local`、`node_modules/`、`.product-playbook-progress.md` 等敏感檔案
+    - [ ] `.env.example` 已建立（只有 key 名稱，沒有實際值）
 - [ ] **T0.2** 設定 linter + formatter
   - 驗收：lint 通過無錯誤
 - [ ] **T0.3** 建立資料庫 + 執行初始 migration
@@ -55,7 +58,13 @@
 - [ ] **T3.1** 全域錯誤處理
 - [ ] **T3.2** 表單驗證 + 邊界情境
 - [ ] **T3.3** 載入狀態 + 空狀態
-- [ ] **T3.4** 基礎安全性（輸入消毒、認證檢查）
+- [ ] **T3.4** 安全性檢查（依 `references/08-security-checklist.md` 逐項確認）
+  - 驗收：
+    - [ ] OWASP Top 10 相關項目已處理（輸入驗證、認證、XSS 防護、CSRF 防護）
+    - [ ] 安全性 Headers 已設定（CSP、X-Frame-Options、HSTS 等）
+    - [ ] CORS 政策已配置（不使用 wildcard *）
+    - [ ] 敏感 API 端點有 Rate Limiting
+    - [ ] API 錯誤回應不洩漏內部資訊
 - [ ] **T3.5** 響應式設計（如果是 Web）
 
 ## Phase 4：部署
