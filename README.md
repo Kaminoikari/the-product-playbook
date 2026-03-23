@@ -472,6 +472,8 @@ This project is licensed under the [MIT License](LICENSE) — free to use, modif
 
 If this project helps you, give it a ⭐ so more people can find it!
 
+[![Star History Chart](https://api.star-history.com/svg?repos=kaminoikari/the-product-playbook&type=Date)](https://star-history.com/#kaminoikari/the-product-playbook&Date)
+
 ---
 
 <p align="center">

@@ -17,13 +17,13 @@
 - アクセント：`#e94560` または `#533483`
 - コンテンツエリア背景：`#f8f9fa`、カード：白に `box-shadow`
 
-**フォント：** Google Fonts CDNからInterを最優先で読み込み、システムフォントにフォールバック：
+**フォント：** Google Fonts CDNからNoto Sans JPを最優先で読み込み、システムフォントにフォールバック：
 ```css
 /* <head>内 */
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
 
 /* CSS内 */
-font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+font-family: "Noto Sans JP", "Hiragino Sans", system-ui, -apple-system, sans-serif;
 ```
 > これが唯一許可される外部CDN依存です。Google Fontsが利用できなくても、ページは正しくレンダリングされます。
 
@@ -103,7 +103,7 @@ font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
 ## 重要な注意事項
 
-- すべてのCSSとJSはHTML内にインライン — Google Fonts CDNのInter以外に外部依存なし
+- すべてのCSSとJSはHTML内にインライン — Google Fonts CDNのNoto Sans JP以外に外部依存なし
 - 完了していないステージは空セクションをレンダリングしない — スキップする
 - HeroセクションにはModerとAudienceを表示し、読者がドキュメントのコンテキストをすぐに理解できるように
 - ページは非常に長くなる可能性がある — 目次ナビゲーションはクイックジャンプに不可欠

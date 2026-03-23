@@ -17,13 +17,13 @@
 - 액센트: `#e94560` 또는 `#533483`
 - 콘텐츠 영역 배경: `#f8f9fa`, 카드: 흰색 + `box-shadow`
 
-**폰트:** Google Fonts CDN에서 Inter를 먼저 로드, 시스템 폰트로 폴백:
+**폰트:** Google Fonts CDN에서 Noto Sans KR을 먼저 로드, 시스템 폰트로 폴백:
 ```css
 /* <head>에 */
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
 
 /* CSS에 */
-font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+font-family: "Noto Sans KR", "Apple SD Gothic Neo", system-ui, -apple-system, sans-serif;
 ```
 > 이것이 유일한 허용된 외부 CDN 의존성입니다. Google Fonts를 사용할 수 없어도 페이지는 정상 렌더링됩니다.
 
@@ -103,7 +103,7 @@ font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
 ## 중요 참고사항
 
-- 모든 CSS와 JS는 HTML에 인라인 — Google Fonts CDN의 Inter 외 외부 의존성 없음
+- 모든 CSS와 JS는 HTML에 인라인 — Google Fonts CDN의 Noto Sans KR 외 외부 의존성 없음
 - 완료되지 않은 단계는 빈 섹션으로 렌더링하지 마세요 — 그냥 건너뛰기
 - Hero 섹션에 "모드"와 "독자"를 표시하여 독자가 문서의 맥락을 즉시 이해하도록
 - 페이지가 매우 길 수 있음 — 목차 네비게이션이 빠른 이동에 필수

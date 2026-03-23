@@ -50,6 +50,19 @@ Analysis points: Most worthwhile problem to solve / Core JTBD / Product position
 | ✏️ Custom Mode | Product Spec Summary (unexecuted fields marked "Not Executed") |
 | ⚡ Build Mode | Engineer-oriented execution summary |
 
+### Output Language Override
+
+Users can request outputs in a different language than the planning session:
+- "Generate the PR-FAQ in Japanese"
+- "Output the report in Spanish"
+- "Write the PRD in Chinese"
+
+When a language override is requested:
+1. Generate the output content in the requested language
+2. Keep framework names in English (JTBD, PR-FAQ, North Star, etc.)
+3. Return to the planning session's original language after output generation
+4. Note: This only affects the output document language, not the reference files or planning flow
+
 ## Extended Output Prompt
 
 After completing the final integrated output, proactively ask:

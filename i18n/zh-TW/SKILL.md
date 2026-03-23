@@ -27,6 +27,27 @@ description: |
 
 ---
 
+## 🌐 語言偵測
+
+在開始之前，偵測使用者第一則訊息的語言。目前安裝的版本是**繁體中文（zh-TW）**。
+
+如果使用者使用其他語言書寫：
+- **English** → Ask (in English): "The currently installed version is Traditional Chinese. Would you like to switch to the English version? I can install it for you automatically."
+- **日本語** → Ask (in Japanese): "現在インストールされているのは繁体字中国語版です。日本語版に切り替えますか？自動でインストールできます。"
+- **简体中文** → Ask (in Chinese): "当前安装的是繁體中文版。是否要切换到简体中文版？我可以直接帮你安装。"
+- **Español** → Ask (in Spanish): "La versión instalada es en chino tradicional. ¿Desea cambiar a español? Puedo instalarlo automáticamente."
+- **한국어** → Ask (in Korean): "현재 번체 중국어 버전이 설치되어 있습니다. 한국어 버전으로 전환하시겠습니까? 자동으로 설치할 수 있습니다."
+
+如果使用者確認，執行：
+```bash
+curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash -s -- --lang [detected_lang_code]
+```
+然後重新讀取新安裝的 SKILL.md，從頭開始。
+
+如果使用者拒絕，繼續使用目前語言（繁體中文）。
+
+---
+
 ## ⚡ 啟動確認流程（三步漸進）
 
 當使用者觸發此 skill，採用**漸進式確認**，避免一次丟出太多選項。如果使用者已在問題中給出明確指示，直接套用不必再問。

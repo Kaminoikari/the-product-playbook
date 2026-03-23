@@ -53,6 +53,10 @@
 - **MVP boundary**: [What to do / What not to do]
 - **Success metrics**: [Success metrics + target values]
 
+## Language Preference
+- **Installed language**: [auto-detected from .lang file or user's language]
+- **User's preferred language**: [the language the user communicates in]
+
 ## Accumulated Insights
 - **Known pain points**: [Pain point list, with sources]
 - **User feedback themes**: [Feedback themes across sessions]
@@ -270,3 +274,16 @@ Which one is correct?
 ### New data from the flow overrides context
 
 If data produced during a flow differs from old data in the context (e.g., Revision Mode redefines the JTBD), **flow data takes priority**. It is automatically overwritten at the end of the flow.
+
+---
+
+## 10. Language Preference
+
+When `.product-context.md` is created or updated, record the language preference in the `Language Preference` section:
+
+- **Installed language**: Detected from the `.lang` file in the skill installation directory, or from the user's locale.
+- **User's preferred language**: The language the user communicates in during the session.
+
+**Loading rule**: When loading an existing `.product-context.md`, if a language preference is recorded, continue the session in that language.
+
+**Write timing**: Language preference is written during Context Bootstrap (Section 4) or at the end of the first flow that creates the context file. It is updated whenever the user explicitly switches language mid-session.

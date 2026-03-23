@@ -17,13 +17,13 @@
 - 强调色：`#e94560` 或 `#533483`
 - 内容区背景：`#f8f9fa`，卡片：白色带 `box-shadow`
 
-**中文字体：** 优先从 Google Fonts CDN 载入 Noto Sans TC，失败时 fallback 到系统字体：
+**中文字体：** 优先从 Google Fonts CDN 载入 Noto Sans SC，失败时 fallback 到系统字体：
 ```css
 /* 在 <head> 中加入 */
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
 
 /* CSS 中 */
-font-family: "Noto Sans TC", system-ui, -apple-system, "Microsoft JhengHei", "PingFang TC", sans-serif;
+font-family: "Noto Sans SC", system-ui, -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif;
 ```
 > 这是唯一允许的外部 CDN 依赖。如果 Google Fonts 不可用，页面仍可正常显示。
 
@@ -100,7 +100,7 @@ font-family: "Noto Sans TC", system-ui, -apple-system, "Microsoft JhengHei", "Pi
 
 ## 注意事项
 
-- 所有 CSS 和 JS 内嵌在 HTML 中，除 Google Fonts CDN 载入 Noto Sans TC 外不依赖任何外部资源
+- 所有 CSS 和 JS 内嵌在 HTML 中，除 Google Fonts CDN 载入 Noto Sans SC 外不依赖任何外部资源
 - 如果某个阶段没有完成，不要放空白区块，直接跳过
 - 页面 Hero 区块标明「执行模式」和「产出对象」，让阅读者一眼看到这份文件的定位
 - 页面总长度可能很长，目录导航很重要，确保使用者能快速跳转

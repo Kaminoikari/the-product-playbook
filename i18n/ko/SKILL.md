@@ -27,6 +27,27 @@ description: |
 
 ---
 
+## 🌐 언어 감지
+
+시작하기 전에 사용자의 첫 번째 메시지 언어를 감지하세요. 현재 설치된 버전은 **한국어 (ko)**입니다.
+
+사용자가 다른 언어로 작성하는 경우:
+- **English** → Ask (in English): "The currently installed version is Korean. Would you like to switch to the English version? I can install it for you automatically."
+- **繁體中文** → Ask (in Chinese): "目前安裝的是韓文版。是否要切換到繁體中文版？我可以直接幫你安裝。"
+- **日本語** → Ask (in Japanese): "現在インストールされているのは韓国語版です。日本語版に切り替えますか？自動でインストールできます。"
+- **简体中文** → Ask (in Chinese): "当前安装的是韩语版。是否要切换到简体中文版？我可以直接帮你安装。"
+- **Español** → Ask (in Spanish): "La versión instalada es en coreano. ¿Desea cambiar a español? Puedo instalarlo automáticamente."
+
+사용자가 확인하면 다음을 실행:
+```bash
+curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash -s -- --lang [detected_lang_code]
+```
+새로 설치된 SKILL.md를 다시 읽고 처음부터 시작하세요.
+
+사용자가 거절하면 현재 언어(한국어)로 계속 진행하세요.
+
+---
+
 ## ⚡ 온보딩 플로우 (3단계 점진적 확인)
 
 사용자가 이 스킬을 트리거하면, **점진적 확인** 방식을 사용하세요 — 한 번에 너무 많은 옵션으로 압도하지 마세요. 사용자가 프롬프트에서 이미 명확한 지시를 했다면 질문 없이 바로 적용하세요.

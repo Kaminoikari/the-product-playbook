@@ -53,6 +53,10 @@
 - **Límites del MVP**: [Qué hacer / Qué no hacer]
 - **Métricas de éxito**: [Métricas de éxito + valores objetivo]
 
+## Preferencia de Idioma
+- **Idioma instalado**: [auto-detectado desde archivo .lang o idioma del usuario]
+- **Idioma preferido del usuario**: [el idioma en que el usuario se comunica]
+
 ## Insights Acumulados
 - **Puntos de dolor conocidos**: [Lista de puntos de dolor, con fuentes]
 - **Temas de feedback de usuarios**: [Temas de feedback a través de sesiones]
@@ -270,3 +274,16 @@ Cuando el pre-paso S1 lee tanto `.product-context.md` como archivos del proyecto
 ### Nuevos datos del flujo sobrescriben contexto
 
 Si los datos producidos durante un flujo difieren de datos antiguos en el contexto (p.ej., Modo Revisión redefine el JTBD), **los datos del flujo tienen prioridad**. Se sobrescribe automáticamente al final del flujo.
+
+---
+
+## 10. Preferencia de Idioma
+
+Cuando `.product-context.md` se crea o actualiza, registrar la preferencia de idioma en la sección `Preferencia de Idioma`:
+
+- **Idioma instalado**: Detectado desde el archivo `.lang` en el directorio de instalación del skill, o desde la configuración regional del usuario.
+- **Idioma preferido del usuario**: El idioma en que el usuario se comunica durante la sesión.
+
+**Regla de carga**: Al cargar un `.product-context.md` existente, si hay una preferencia de idioma registrada, continuar la sesión en ese idioma.
+
+**Momento de escritura**: La preferencia de idioma se escribe durante el Context Bootstrap (Sección 4) o al final del primer flujo que crea el archivo de contexto. Se actualiza cuando el usuario cambia explícitamente de idioma durante la sesión.

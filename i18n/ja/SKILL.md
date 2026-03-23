@@ -27,6 +27,27 @@ description: |
 
 ---
 
+## 🌐 言語検出
+
+開始前に、ユーザーの最初のメッセージの言語を検出してください。現在インストールされているバージョンは**日本語（ja）**です。
+
+ユーザーが別の言語で書いている場合：
+- **English** → Ask (in English): "The currently installed version is Japanese. Would you like to switch to the English version? I can install it for you automatically."
+- **繁體中文** → Ask (in Chinese): "目前安裝的是日文版。是否要切換到繁體中文版？我可以直接幫你安裝。"
+- **简体中文** → Ask (in Chinese): "当前安装的是日文版。是否要切换到简体中文版？我可以直接帮你安装。"
+- **Español** → Ask (in Spanish): "La versión instalada es en japonés. ¿Desea cambiar a español? Puedo instalarlo automáticamente."
+- **한국어** → Ask (in Korean): "현재 일본어 버전이 설치되어 있습니다. 한국어 버전으로 전환하시겠습니까? 자동으로 설치할 수 있습니다."
+
+ユーザーが確認した場合、以下を実行：
+```bash
+curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash -s -- --lang [detected_lang_code]
+```
+新しくインストールされたSKILL.mdを再読み込みし、最初からやり直してください。
+
+ユーザーが辞退した場合、現在の言語（日本語）で続行してください。
+
+---
+
 ## ⚡ オンボーディングフロー（3段階の確認ステップ）
 
 ユーザーがこのスキルをトリガーした際は、**段階的な確認**アプローチを使用してください。一度に多くのオプションを提示しすぎないようにします。ユーザーがプロンプトで明確な指示を出している場合は、質問せずにそのまま適用してください。

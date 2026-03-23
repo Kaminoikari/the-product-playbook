@@ -50,6 +50,19 @@ Puntos de análisis: Problema más valioso a resolver / JTBD Central / Posiciona
 | ✏️ Modo Personalizado | Resumen de Spec de Producto (campos no ejecutados marcados "No Ejecutado") |
 | ⚡ Modo Build | Resumen de ejecución orientado a ingenieros |
 
+### Anulación de Idioma de Output
+
+Los usuarios pueden solicitar outputs en un idioma diferente al de la sesión de planificación:
+- "Genera el PR-FAQ en japonés"
+- "Genera el reporte en español"
+- "Escribe el PRD en chino"
+
+Cuando se solicita una anulación de idioma:
+1. Generar el contenido del output en el idioma solicitado
+2. Mantener los nombres de frameworks en inglés (JTBD, PR-FAQ, North Star, etc.)
+3. Volver al idioma original de la sesión de planificación después de la generación del output
+4. Nota: Esto solo afecta el idioma del documento de output, no los archivos de referencia ni el flujo de planificación
+
 ## Prompt de Output Extendido
 
 Después de completar el output final integrado, preguntar proactivamente:

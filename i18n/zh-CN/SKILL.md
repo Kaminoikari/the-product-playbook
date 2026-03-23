@@ -27,6 +27,27 @@ description: |
 
 ---
 
+## 🌐 语言检测
+
+在开始之前，检测用户第一条消息的语言。当前安装的版本是**简体中文（zh-CN）**。
+
+如果用户使用其他语言书写：
+- **English** → Ask (in English): "The currently installed version is Simplified Chinese. Would you like to switch to the English version? I can install it for you automatically."
+- **繁體中文** → Ask (in Chinese): "目前安裝的是簡體中文版。是否要切換到繁體中文版？我可以直接幫你安裝。"
+- **日本語** → Ask (in Japanese): "現在インストールされているのは簡体字中国語版です。日本語版に切り替えますか？自動でインストールできます。"
+- **Español** → Ask (in Spanish): "La versión instalada es en chino simplificado. ¿Desea cambiar a español? Puedo instalarlo automáticamente."
+- **한국어** → Ask (in Korean): "현재 간체 중국어 버전이 설치되어 있습니다. 한국어 버전으로 전환하시겠습니까? 자동으로 설치할 수 있습니다."
+
+如果用户确认，执行：
+```bash
+curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash -s -- --lang [detected_lang_code]
+```
+然后重新读取新安装的 SKILL.md，从头开始。
+
+如果用户拒绝，继续使用当前语言（简体中文）。
+
+---
+
 ## ⚡ 启动确认流程（三步渐进）
 
 当使用者触发此 skill，采用**渐进式确认**，避免一次丢出太多选项。如果使用者已在问题中给出明确指示，直接套用不必再问。

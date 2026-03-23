@@ -152,6 +152,7 @@ ${BOLD}$(msg usage_title)${RESET}
 Usage:
   bash install.sh                  $(msg usage_install)
   bash install.sh --lang <lang>    $(msg usage_lang)
+  bash install.sh --update         Update to latest version
   bash install.sh --uninstall      $(msg usage_uninstall)
   bash install.sh --help           $(msg usage_help)
 
@@ -348,12 +349,33 @@ main() {
     esac
   done
 
-  # Auto-detect if not specified
+  # Auto-detect or prompt interactively
   if [ -z "$INSTALL_LANG" ]; then
     INSTALL_LANG=$(detect_language)
+    # If interactive terminal and detected 'en' (default fallback), offer selection
+    if [ "$INSTALL_LANG" = "en" ] && [ -t 0 ] && [ -t 1 ]; then
+      printf "\n${BOLD}Select language / 選擇語言:${RESET}\n"
+      printf "  ${BOLD}1)${RESET} English\n"
+      printf "  ${BOLD}2)${RESET} 繁體中文\n"
+      printf "  ${BOLD}3)${RESET} 日本語\n"
+      printf "  ${BOLD}4)${RESET} 简体中文\n"
+      printf "  ${BOLD}5)${RESET} Español\n"
+      printf "  ${BOLD}6)${RESET} 한국어\n"
+      printf "\n${BLUE}▸${RESET} Press Enter for English, or type 1-6: "
+      read -r choice
+      case "${choice:-1}" in
+        1|"") INSTALL_LANG="en" ;;
+        2) INSTALL_LANG="zh-TW" ;;
+        3) INSTALL_LANG="ja" ;;
+        4) INSTALL_LANG="zh-CN" ;;
+        5) INSTALL_LANG="es" ;;
+        6) INSTALL_LANG="ko" ;;
+        *) INSTALL_LANG="en" ;;
+      esac
+    fi
   fi
 
-  # Validate language
+  # Validate language (fallback to en if unsupported)
   local valid=false
   for lang in $SUPPORTED_LANGS; do
     if [ "$INSTALL_LANG" = "$lang" ]; then
@@ -362,14 +384,24 @@ main() {
     fi
   done
   if [ "$valid" = false ]; then
-    err "$(msg invalid_lang) $SUPPORTED_LANGS"
-    exit 1
+    warn "'$INSTALL_LANG' is not supported. Supported: $SUPPORTED_LANGS"
+    warn "Falling back to English (en)."
+    INSTALL_LANG="en"
   fi
 
   # Dispatch command
   case "${args[0]:-}" in
     --uninstall|-u)
       do_uninstall
+      ;;
+    --update)
+      # Update: detect installed language, then re-install from remote
+      if [ -f "$SKILL_DIR/.lang" ]; then
+        INSTALL_LANG=$(cat "$SKILL_DIR/.lang")
+      fi
+      # Force re-download by removing version file
+      rm -f "$SKILL_DIR/.version"
+      do_install
       ;;
     --help|-h)
       usage

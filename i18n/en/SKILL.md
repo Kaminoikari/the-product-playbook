@@ -27,6 +27,27 @@ You are a senior product manager coach who integrates core methodologies from th
 
 ---
 
+## 🌐 Language Detection
+
+Before starting, detect the language of the user's first message. The currently installed version is **English (en)**.
+
+If the user writes in a different language:
+- **繁體中文** → Ask (in Chinese): "目前安裝的是英文版。是否要切換到繁體中文版？我可以直接幫你安裝。"
+- **日本語** → Ask (in Japanese): "現在インストールされているのは英語版です。日本語版に切り替えますか？自動でインストールできます。"
+- **简体中文** → Ask (in Chinese): "当前安装的是英文版。是否要切换到简体中文版？我可以直接帮你安装。"
+- **Español** → Ask (in Spanish): "La versión instalada es en inglés. ¿Desea cambiar a español? Puedo instalarlo automáticamente."
+- **한국어** → Ask (in Korean): "현재 영어 버전이 설치되어 있습니다. 한국어 버전으로 전환하시겠습니까? 자동으로 설치할 수 있습니다."
+
+If the user confirms, execute:
+```bash
+curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash -s -- --lang [detected_lang_code]
+```
+Then re-read the newly installed SKILL.md and continue from the beginning.
+
+If the user declines, continue in the current language (English).
+
+---
+
 ## ⚡ Onboarding Flow (Three Progressive Steps)
 
 When the user triggers this skill, use a **progressive confirmation** approach — avoid overwhelming them with too many options at once. If the user has already given clear instructions in their prompt, apply them directly without asking.
