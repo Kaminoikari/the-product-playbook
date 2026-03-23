@@ -29,7 +29,7 @@ REPO_URL="https://github.com/kaminoikari/the-product-playbook.git"
 TMP_DIR="${TMPDIR:-/tmp}/the-product-playbook-install-$$"
 SKILL_DIR="$HOME/.claude/skills/the-product-playbook"
 COMMANDS_DIR="$HOME/.claude/commands"
-SUPPORTED_LANGS="en zh-TW"
+SUPPORTED_LANGS="en zh-TW ja zh-CN es ko"
 INSTALL_LANG=""
 
 # ─── Language Detection ───────────────────────────────────────────────────────
@@ -43,7 +43,11 @@ detect_language() {
   local sys_lang="${LANG:-${LC_ALL:-${LC_MESSAGES:-}}}"
   case "$sys_lang" in
     zh_TW*|zh_Hant*) echo "zh-TW" ;;
-    *)               echo "en" ;;
+    zh_CN*|zh_Hans*|zh*) echo "zh-CN" ;;
+    ja*) echo "ja" ;;
+    ko*) echo "ko" ;;
+    es*) echo "es" ;;
+    *)   echo "en" ;;
   esac
 }
 
