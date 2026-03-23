@@ -24,7 +24,8 @@ The Product Playbook is a **Claude AI Skill** that systematically guides you thr
 - 🔄 **Change propagation engine** — modify any step and all downstream outputs update automatically
 - 📎 **Smart file integration** — upload data, screenshots, or documents; the AI automatically integrates them into the relevant step
 - 🔗 **Dev handoff** — generates CLAUDE.md + TASKS.md + TICKETS.md for seamless handoff to Claude Code development
-- 📊 **Multi-format output** — HTML reports, PRDs, PowerPoint decks, dev handoff packages
+- 📊 **Multi-format output** — PDF (with bookmarks), HTML reports, Word docs, PowerPoint decks, dev handoff packages
+- 📄 **Smart document import** — three-layer PDF parsing (text extraction → Claude Vision → OCR fallback), DOCX/PPTX support
 
 **Trigger the entire flow with a single sentence:**
 
@@ -153,7 +154,13 @@ the-product-playbook/
     ├── 07-dev-handoff.md             # Dev handoff: CLAUDE.md + TASKS.md + Architecture
     ├── 08-security-checklist.md      # OWASP Top 10 + CORS + CSP + Security architecture
     ├── rules-context.md              # Cross-session product context accumulation rules
-    └── rules-*.md                    # Mode step rules + progress/change/file integration rules
+    ├── rules-document-tools.md       # Document conversion tool dependency management
+    ├── rules-import-document.md      # Three-layer PDF parsing + DOCX/PPTX import
+    ├── rules-export-document.md      # Multi-format export (PDF/DOCX/PPTX)
+    ├── rules-*.md                    # Mode step rules + progress/change/file integration rules
+    └── templates/
+        ├── prd-style.css             # Professional print-grade CSS for PDF export
+        └── report-style.css          # Print optimization CSS for HTML report → PDF
 ```
 
 ---
@@ -260,6 +267,28 @@ Generate a complete dev handoff package and kick off Claude Code development wit
 # Start development in Claude Code with a single command
 > Please read CLAUDE.md and TASKS.md, start executing Phase 0
 ```
+
+### 📄 Document Import & Export
+
+**Import** any existing document into the planning flow — no manual copy-paste:
+
+```
+PDF (digital)   → pymupdf text extraction (instant, free)
+PDF (vector/scan) → Claude Vision semantic parsing (best quality)
+PDF (fallback)  → Tesseract OCR (offline capable)
+DOCX / PPTX     → Pandoc conversion
+```
+
+**Export** planning outputs to professional formats:
+
+```
+/export pdf   → Playwright rendering + pikepdf bookmarks (CJK-perfect)
+/export docx  → Pandoc + reference template
+/export pptx  → Pandoc slide generation
+/export html  → Interactive HTML report (existing)
+```
+
+> **Why PDF via Playwright?** WeasyPrint produces garbled CJK text. Playwright (Chromium) renders perfectly — verified in production with Traditional Chinese documents.
 
 ### 🔥 Plan Directly on Existing Systems (Build Mode Killer Feature)
 
@@ -407,6 +436,10 @@ cp -r the-product-playbook/commands/* ~/.claude/commands/
 - `Generate PRD` — engineering handoff (includes flowcharts + DB Schema + wireframes)
 - `Generate deck` — PowerPoint presentation
 - `Start development` — dev handoff package (CLAUDE.md + TASKS.md)
+- `/export pdf` — export as PDF with professional typography, cover page, TOC, and bookmarks
+- `/export docx` — export as Word document
+- `/export pptx` — export as PowerPoint slides
+- `/parse [file]` — parse a PDF/DOCX/PPTX into Markdown for planning use
 
 #### Analysis Commands
 - `Run a completeness check` — assess planning coverage

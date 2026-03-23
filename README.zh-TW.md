@@ -24,7 +24,8 @@ The Product Playbook 是一個 **Claude AI Skill**，能夠系統性地引導你
 - 🔄 **變更傳播引擎** — 修改任何步驟，自動更新所有下游產出
 - 📎 **檔案智慧整合** — 上傳數據、截圖、文件，AI 自動整合到對應步驟
 - 🔗 **開發銜接** — 產出 CLAUDE.md + TASKS.md + TICKETS.md，無縫銜接 Claude Code 開發
-- 📊 **多格式產出** — HTML 報告、PRD、PowerPoint、開發交接包
+- 📊 **多格式產出** — PDF（含書籤）、HTML 報告、Word 文件、PowerPoint、開發交接包
+- 📄 **智慧文件匯入** — 三層 PDF 解析（文字擷取 → Claude Vision → OCR 備援）、DOCX/PPTX 支援
 
 **用一句話觸發整個流程：**
 
@@ -153,7 +154,13 @@ the-product-playbook/
     ├── 07-dev-handoff.md             # 開發銜接：CLAUDE.md + TASKS.md + 架構
     ├── 08-security-checklist.md      # OWASP Top 10 + CORS + CSP + 安全架構
     ├── rules-context.md              # 跨 Session 產品上下文累積規則
-    └── rules-*.md                    # 各模式步驟規則 + 進度/變更/檔案整合規則
+    ├── rules-document-tools.md       # 文件轉換工具依賴管理
+    ├── rules-import-document.md      # 三層 PDF 解析 + DOCX/PPTX 匯入
+    ├── rules-export-document.md      # 多格式匯出（PDF/DOCX/PPTX）
+    ├── rules-*.md                    # 各模式步驟規則 + 進度/變更/檔案整合規則
+    └── templates/
+        ├── prd-style.css             # 專業印刷級 CSS（PDF 匯出用）
+        └── report-style.css          # 列印最佳化 CSS（HTML 報告 → PDF）
 ```
 
 ---
@@ -260,6 +267,28 @@ the-product-playbook/
 # 在 Claude Code 中一句話開始開發
 > 請讀取 CLAUDE.md 和 TASKS.md，開始執行 Phase 0
 ```
+
+### 📄 文件匯入與匯出
+
+**匯入**任何現有文件到規劃流程中 — 無需手動複製貼上：
+
+```
+PDF（數位）      → pymupdf 文字擷取（即時、免費）
+PDF（向量/掃描） → Claude Vision 語意解析（最佳品質）
+PDF（備援）      → Tesseract OCR（可離線使用）
+DOCX / PPTX     → Pandoc 轉換
+```
+
+**匯出**規劃成果為專業格式：
+
+```
+/export pdf   → Playwright 渲染 + pikepdf 書籤（CJK 完美支援）
+/export docx  → Pandoc + 參考模板
+/export pptx  → Pandoc 投影片生成
+/export html  → 互動式 HTML 報告（既有功能）
+```
+
+> **為什麼用 Playwright 輸出 PDF？** WeasyPrint 會產生 CJK 亂碼。Playwright（Chromium）渲染完美 — 已在正式環境以繁體中文文件驗證。
 
 ### 🔥 既有系統直接規劃（Build 模式殺手級用法）
 
@@ -407,6 +436,10 @@ cp -r the-product-playbook/commands/* ~/.claude/commands/
 - `產出 PRD` — 工程師交付包（含流程圖 + DB Schema + Wireframe）
 - `產出簡報` — PowerPoint 簡報
 - `進入開發` — 開發交接包（CLAUDE.md + TASKS.md）
+- `/export pdf` — 匯出為 PDF，含專業排版、封面、目錄及書籤
+- `/export docx` — 匯出為 Word 文件
+- `/export pptx` — 匯出為 PowerPoint 簡報
+- `/parse [file]` — 解析 PDF/DOCX/PPTX 為 Markdown 以供規劃使用
 
 #### 分析指令
 - `幫我做完整性評估` — 評估規劃完整度

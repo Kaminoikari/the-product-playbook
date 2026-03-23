@@ -24,7 +24,8 @@ The Product Playbook es un **Skill de Claude AI** que te guía sistemáticamente
 - 🔄 **Motor de propagación de cambios** — modifica cualquier paso y todos los outputs downstream se actualizan automáticamente
 - 📎 **Integración inteligente de archivos** — sube datos, capturas de pantalla o documentos; la IA los integra automáticamente en el paso relevante
 - 🔗 **Handoff de desarrollo** — genera CLAUDE.md + TASKS.md + TICKETS.md para un handoff fluido al desarrollo en Claude Code
-- 📊 **Output multi-formato** — reportes HTML, PRDs, presentaciones PowerPoint, paquetes de handoff de desarrollo
+- 📊 **Output multi-formato** — PDF (con marcadores), reportes HTML, documentos Word, presentaciones PowerPoint, paquetes de handoff de desarrollo
+- 📄 **Importación inteligente de documentos** — análisis de PDF en tres capas (extracción de texto → Claude Vision → OCR como respaldo), soporte DOCX/PPTX
 
 **Activa todo el flujo con una sola oración:**
 
@@ -153,7 +154,13 @@ the-product-playbook/
     ├── 07-dev-handoff.md             # Handoff de desarrollo: CLAUDE.md + TASKS.md + Arquitectura
     ├── 08-security-checklist.md      # OWASP Top 10 + CORS + CSP + Arquitectura de seguridad
     ├── rules-context.md              # Reglas de acumulación de contexto de producto cross-sesión
-    └── rules-*.md                    # Reglas de pasos por modo + reglas de progreso/cambio/integración de archivos
+    ├── rules-document-tools.md       # Gestión de dependencias de herramientas de conversión de documentos
+    ├── rules-import-document.md      # Análisis de PDF en tres capas + importación DOCX/PPTX
+    ├── rules-export-document.md      # Exportación multi-formato (PDF/DOCX/PPTX)
+    ├── rules-*.md                    # Reglas de pasos por modo + reglas de progreso/cambio/integración de archivos
+    └── templates/
+        ├── prd-style.css             # CSS profesional de grado impresión para exportación PDF
+        └── report-style.css          # CSS de optimización de impresión para reporte HTML → PDF
 ```
 
 ---
@@ -260,6 +267,28 @@ Genera un paquete completo de handoff de desarrollo e inicia desarrollo en Claud
 # Inicia desarrollo en Claude Code con un solo comando
 > Por favor lee CLAUDE.md y TASKS.md, comienza ejecutando la Fase 0
 ```
+
+### 📄 Importación y Exportación de Documentos
+
+**Importa** cualquier documento existente al flujo de planificación — sin copiar y pegar manualmente:
+
+```
+PDF (digital)       → extracción de texto pymupdf (instantáneo, gratuito)
+PDF (vectorial/escaneo) → análisis semántico Claude Vision (mejor calidad)
+PDF (respaldo)      → Tesseract OCR (funciona offline)
+DOCX / PPTX         → conversión Pandoc
+```
+
+**Exporta** outputs de planificación a formatos profesionales:
+
+```
+/export pdf   → renderizado Playwright + marcadores pikepdf (CJK perfecto)
+/export docx  → Pandoc + plantilla de referencia
+/export pptx  → generación de diapositivas Pandoc
+/export html  → reporte HTML interactivo (existente)
+```
+
+> **¿Por qué PDF via Playwright?** WeasyPrint produce texto CJK ilegible. Playwright (Chromium) renderiza perfectamente — verificado en producción con documentos en chino tradicional.
 
 ### 🔥 Planifica Directamente sobre Sistemas Existentes (Funcionalidad Estrella del Modo Build)
 
@@ -407,6 +436,10 @@ cp -r the-product-playbook/commands/* ~/.claude/commands/
 - `Generar PRD` — entrega de ingeniería (incluye diagramas de flujo + DB Schema + wireframes)
 - `Generar presentación` — presentación PowerPoint
 - `Iniciar desarrollo` — paquete de handoff de desarrollo (CLAUDE.md + TASKS.md)
+- `/export pdf` — exportar como PDF con tipografía profesional, portada, índice y marcadores
+- `/export docx` — exportar como documento Word
+- `/export pptx` — exportar como diapositivas PowerPoint
+- `/parse [file]` — analizar un PDF/DOCX/PPTX en Markdown para uso en planificación
 
 #### Comandos de Análisis
 - `Ejecutar evaluación de completitud` — evaluar cobertura de planificación
