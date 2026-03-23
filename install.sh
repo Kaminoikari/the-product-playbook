@@ -293,9 +293,15 @@ do_install() {
     [ -d "$src_dir/commands" ] && cp -r "$src_dir/commands" "$SKILL_DIR/"
   fi
 
-  # Write version marker
-  if [ "$commit_hash" != "unknown" ]; then
-    echo "${commit_hash}" > "$SKILL_DIR/.version"
+  # Write version marker (semver from package.json for npm comparison)
+  local pkg_version=""
+  if [ -f "$src_dir/package.json" ]; then
+    pkg_version=$(grep '"version"' "$src_dir/package.json" | head -1 | sed 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/')
+  fi
+  if [ -n "$pkg_version" ]; then
+    echo "$pkg_version" > "$SKILL_DIR/.version"
+  elif [ "$commit_hash" != "unknown" ]; then
+    echo "$commit_hash" > "$SKILL_DIR/.version"
   fi
 
   # Write default language marker

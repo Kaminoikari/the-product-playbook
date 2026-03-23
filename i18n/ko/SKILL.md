@@ -137,7 +137,18 @@ description: |
 
 ## 시작 플로우
 
-**사전 점검**: 스킬이 트리거되면, 다음 두 가지 점검을 순서대로 실행하세요:
+**사전 점검**: 스킬이 트리거되면, 다음 세 가지 점검을 순서대로 실행하세요:
+
+### 버전 확인 (무음, 비차단)
+
+시작하기 전에, 새로운 버전이 있는지 조용히 확인합니다:
+
+1. 실행: `timeout 3 npm view the-product-playbook version 2>/dev/null || echo ""`
+2. 설치된 버전 읽기: `cat ~/.claude/skills/the-product-playbook/.version 2>/dev/null || echo ""`
+3. npm 버전이 설치된 버전보다 새로운 경우 표시:
+   `📦 업데이트 가능: v[설치됨] → v[최신]. 실행: npx the-product-playbook`
+4. 확인이 실패하거나, 시간 초과되거나, 버전이 일치하는 경우 → 아무것도 표시하지 않고 조용히 계속
+5. 결과에 관계없이 다음 단계로 진행 — 버전 확인으로 차단하지 않음
 
 1. **진행 상황 파일 점검**: 프로젝트 디렉토리에 `.product-playbook-progress.md`가 존재하는지 확인하세요. 존재하면 사용자에게 이전 진행 상황에서 재개할지 물어보세요 (`references/rules-progress.md`의 규칙 적용).
 

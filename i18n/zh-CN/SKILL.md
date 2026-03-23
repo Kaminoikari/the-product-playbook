@@ -137,7 +137,18 @@ description: |
 
 ## 启动流程
 
-**启动前置检查**：触发 skill 后，依序执行两项检查：
+**启动前置检查**：触发 skill 后，依序执行三项检查：
+
+### 版本检查（静默、非阻塞）
+
+启动前，静默检查是否有更新版本：
+
+1. 执行：`timeout 3 npm view the-product-playbook version 2>/dev/null || echo ""`
+2. 读取已安装版本：`cat ~/.claude/skills/the-product-playbook/.version 2>/dev/null || echo ""`
+3. 若 npm 版本较新，显示：
+   `📦 有新版本：v[已安装] → v[最新]。运行 npx the-product-playbook 更新`
+4. 若检查失败、超时或版本一致 → 不显示任何信息，静默继续
+5. 无论结果如何都继续下一步 — 绝不因版本检查而阻塞
 
 1. **进度文件检查**：检查专案目录下是否存在 `.product-playbook-progress.md`。若存在，优先询问是否恢复进度（规则见 `references/rules-progress.md`）。
 
