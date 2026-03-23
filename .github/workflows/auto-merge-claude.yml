@@ -1,0 +1,45 @@
+name: Auto-merge Claude Code branches
+
+on:
+  push:
+    branches: ['claude/**']
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create PR and merge
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          echo "Branch: $BRANCH"
+
+          # 取得最新 commit message 作為 PR 標題
+          TITLE=$(git log -1 --format='%s')
+
+          # 建立 PR
+          PR_URL=$(gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "$TITLE" \
+            --body "Auto-created from Claude Code mobile branch \`$BRANCH\`" \
+            2>&1) || true
+
+          # 如果 PR 已存在，取得現有 PR
+          if echo "$PR_URL" | grep -q "already exists"; then
+            PR_URL=$(gh pr view "$BRANCH" --json url -q '.url')
+          fi
+
+          echo "PR: $PR_URL"
+
+          # 直接 merge
+          gh pr merge "$BRANCH" --merge --auto
