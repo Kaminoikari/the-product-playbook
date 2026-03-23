@@ -35,7 +35,7 @@ I want to build a product
 ## 🎬 Demo
 
 <p align="center">
-  <img src="assets/demo-build-en.png" alt="The Product Playbook Demo — Build Mode" width="800">
+  <img src="assets/demo-build-en.gif" alt="The Product Playbook Demo — Build Mode" width="800">
 </p>
 
 > The demo above shows **Build Mode**: describe your requirements → scan codebase → detect tech stack → apply frameworks for problem clarification, then jump straight into solution design.
