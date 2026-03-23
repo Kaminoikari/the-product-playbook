@@ -50,19 +50,21 @@ When the user triggers this skill, use a **progressive confirmation** approach �
 
 **Step 1: Confirm mode** (always ask, unless the user has already specified)
 
-Present the following options:
-- 🚀 **Quick Mode** — Produce an actionable direction within 30 minutes (JTBD → PR-FAQ → North Star)
-- 📦 **Full Mode** — Run through all frameworks to produce a deliverable planning document
-- 🔄 **Revision Mode** — Optimize an existing product (with existing users and data)
-- ✏️ **Custom Mode** — Choose your own framework combination or completeness level
-- ⚡ **Skip to Solution Mode** — Problem is known; skip Discovery and go straight to solutions
+Select a mode (enter a number or name), or just tell me about your product and I'll recommend the best mode:
+
+1. 🚀 **Quick Mode** — 3 steps, ~30 min (JTBD → PR-FAQ → North Star)
+2. 📦 **Full Mode** — 20 steps, comprehensive planning document
+3. 🔄 **Revision Mode** — 12 steps, optimize existing product
+4. ✏️ **Custom Mode** — Choose your own framework combination
+5. ⚡ **Build Mode** — 7 steps, skip Discovery, go straight to solution
+6. 🔧 **Feature Extension Mode** — 4 steps, add a feature to existing product
 
 Quick triggers:
 - "I have a new idea and want to validate it quickly" → auto-apply Quick Mode
 - "I want to create a full product plan" → auto-apply Full Mode
-- "I already know what I want to build" → auto-apply Skip to Solution Mode
+- "I already know what I want to build" → auto-apply Build Mode
 - "I need to revamp my product" → auto-apply Revision Mode
-- "I want to add a feature to my existing product" or "add a new feature" → auto-apply Skip to Solution Mode → Feature Extension path (4 steps, see `references/rules-build.md`)
+- "I want to add a feature to my existing product" or "add a new feature" → auto-apply Feature Extension Mode
 
 **Step 2: Confirm product type and audience** (ask only after mode is confirmed)
 
@@ -91,8 +93,8 @@ Who is this plan primarily for?
 | 📦 **Full Mode** | Run through all frameworks; produce a deliverable plan | All frameworks (see step sequence) | New product planning, major revamps |
 | 🔄 **Revision Mode** | Optimize an existing product with user data and a feature baseline | Current state analysis → Pain point synthesis → Solution → Validation | Feature revamps, UX optimization, product repositioning |
 | ✏️ **Custom Mode** | Choose your own framework combination or completeness level | User-specified | Filling in specific gaps |
-| ⚡ **Skip to Solution Mode** | Skip Discovery, go straight to solutions | PR-FAQ + Pre-mortem + GEM/RICE + MVP + North Star | Problem is known; need fast execution |
-| 🔧 **Feature Extension (Skip to Solution variant)** | Add a single feature to an existing product; streamlined 4-step flow | Problem + Context → Three parallel solutions + AI recommendation → Risk assessment → Execution scope | Adding features to an existing product; clear feature requirements |
+| ⚡ **Build Mode** | Skip Discovery, go straight to solutions | PR-FAQ + Pre-mortem + GEM/RICE + MVP + North Star | Problem is known; need fast execution |
+| 🔧 **Feature Extension Mode** | Add a single feature to an existing product; streamlined 4-step flow | Problem + Context → Three parallel solutions + AI recommendation → Risk assessment → Execution scope | Adding features to an existing product; clear feature requirements |
 
 ### 📊 Completeness Levels (Custom Mode only)
 
@@ -125,7 +127,8 @@ After confirming the mode, **read the corresponding mode rules file** for the st
 | 📦 Full Mode | `references/rules-full.md` |
 | 🔄 Revision Mode | `references/rules-revision.md` |
 | ✏️ Custom Mode | `references/rules-custom.md` |
-| ⚡ Skip to Solution Mode | `references/rules-build.md` |
+| ⚡ Build Mode | `references/rules-build.md` |
+| 🔧 Feature Extension Mode | `references/rules-build.md` (Feature Extension path section) |
 
 After confirming the product type, read `references/rules-product-type.md` for B2B/B2C differentiation adjustments.
 
@@ -143,16 +146,20 @@ When the user asks to list frameworks or uses supplementary commands, read `refe
 
 Before starting, silently check if a newer version is available:
 
-1. Run: `timeout 3 npm view the-product-playbook version 2>/dev/null || echo ""`
-2. Read installed version: `cat ~/.claude/skills/the-product-playbook/.version 2>/dev/null || echo ""`
-3. If the npm version is newer than the installed version, display:
+- Run: `timeout 3 npm view the-product-playbook version 2>/dev/null || echo ""`
+- Read installed version: `cat ~/.claude/skills/the-product-playbook/.version 2>/dev/null || echo ""`
+- If the npm version is newer than the installed version, display:
    `📦 Update available: v[installed] → v[latest]. Run: npx the-product-playbook`
-4. If the check fails, times out, or versions match → say nothing, continue silently
-5. Proceed to the next step regardless — never block on version check
+- If the check fails, times out, or versions match → say nothing, continue silently
+- Proceed to the next step regardless — never block on version check
 
-1. **Progress file check**: Check whether `.product-playbook-progress.md` exists in the project directory. If it does, ask whether the user wants to resume from where they left off (rules in `references/rules-progress.md`).
+### Progress file check
 
-2. **Product context check**: Check whether `.product-context.md` exists in the project directory (rules in `references/rules-context.md`).
+Check whether `.product-playbook-progress.md` exists in the project directory. If it does, ask whether the user wants to resume from where they left off (rules in `references/rules-progress.md`).
+
+### Product context check
+
+Check whether `.product-context.md` exists in the project directory (rules in `references/rules-context.md`).
    - If it exists with complete strategy information → Display "📦 Detected product context for **[Product Name]**. This will serve as the baseline for this planning session."
    - If it exists with only partial information (has Decision History but missing Core Strategy) → Display a summary of known information and offer options to supplement
    - If it does not exist → Note this state; trigger Context Bootstrap when entering Feature Extension or Revision Mode

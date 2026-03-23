@@ -50,19 +50,21 @@ description: |
 
 **第一步：確認模式**（必問，除非使用者已明確指定）
 
-呈現以下選項：
-- 🚀 **快速模式** — 30 分鐘內產出可行動方向（JTBD → PR-FAQ → North Star）
-- 📦 **完整模式** — 完整跑過所有框架，產出可交付企劃文件
-- 🔄 **改版模式** — 針對既有產品的改版優化（有既有用戶和數據）
-- ✏️ **自訂模式** — 自選框架組合或完整性等級
-- ⚡ **直接實作模式** — 問題已知，跳過 Discovery 直接進解法
+請選擇一個模式（輸入編號或名稱），或直接告訴我你想做什麼產品，我會幫你判斷最適合的模式：
+
+1. 🚀 **快速模式** — 3 步、約 30 分鐘（JTBD → PR-FAQ → North Star）
+2. 📦 **完整模式** — 20 步、完整企劃文件
+3. 🔄 **改版模式** — 12 步、既有產品優化
+4. ✏️ **自訂模式** — 自選框架組合或完整性等級
+5. ⚡ **直接實作模式** — 7 步、跳過 Discovery 直接進解法
+6. 🔧 **功能擴充模式** — 4 步、在既有產品新增單一功能
 
 快捷觸發：
 - 「我有個新 idea，想快速驗證」→ 自動套用快速模式
 - 「我要做完整的產品企劃」→ 自動套用完整模式
 - 「我已經知道要做什麼」→ 自動套用直接實作模式
 - 「我要改版」→ 自動套用改版模式
-- 「我要在現有產品加一個功能」「新增功能」→ 自動套用直接實作模式 → 功能擴充路徑（4 步，見 `references/rules-build.md`）
+- 「我要在現有產品加一個功能」「新增功能」→ 自動套用功能擴充模式
 
 **第二步：確認產品類型和對象**（確認模式後才問）
 
@@ -91,8 +93,8 @@ description: |
 | 📦 **完整模式（Full）** | 完整跑過所有框架，產出可交付企劃文件 | 全部框架（見步驟序列） | 新產品規劃、重大改版 |
 | 🔄 **改版模式（Revision）** | 針對既有產品改版，有用戶數據和功能基礎 | 現況分析 → 痛點收斂 → 解法 → 驗證 | 功能改版、體驗優化、產品重新定位 |
 | ✏️ **自訂模式（Custom）** | 自選框架組合或完整性等級 | 依使用者指定 | 想補足特定環節 |
-| ⚡ **直接實作模式（Skip to Solution）** | 跳過 Discovery，直接進解法 | PR-FAQ + Pre-mortem + GEM/RICE + MVP + North Star | 問題已知、需要快速執行 |
-| 🔧 **功能擴充（直接實作變體）** | 在既有產品上新增單一功能，4 步精簡流程 | 問題+上下文 → 三平行解法+AI推薦 → 風險評估 → 執行範圍 | 既有產品加功能、功能需求明確 |
+| ⚡ **直接實作模式（Build）** | 跳過 Discovery，直接進解法 | PR-FAQ + Pre-mortem + GEM/RICE + MVP + North Star | 問題已知、需要快速執行 |
+| 🔧 **功能擴充模式（Feature Extension）** | 在既有產品上新增單一功能，4 步精簡流程 | 問題+上下文 → 三平行解法+AI推薦 → 風險評估 → 執行範圍 | 既有產品加功能、功能需求明確 |
 
 ### 📊 完整性等級（自訂模式適用）
 
@@ -126,6 +128,7 @@ description: |
 | 🔄 改版模式 | `references/rules-revision.md` |
 | ✏️ 自訂模式 | `references/rules-custom.md` |
 | ⚡ 直接實作模式 | `references/rules-build.md` |
+| 🔧 功能擴充模式 | `references/rules-build.md`（功能擴充路徑段落） |
 
 確認產品類型後，讀取 `references/rules-product-type.md` 取得 B2B/B2C 差異化調整。
 
@@ -143,16 +146,19 @@ description: |
 
 啟動前，靜默檢查是否有更新版本：
 
-1. 執行：`timeout 3 npm view the-product-playbook version 2>/dev/null || echo ""`
-2. 讀取已安裝版本：`cat ~/.claude/skills/the-product-playbook/.version 2>/dev/null || echo ""`
-3. 若 npm 版本較新，顯示：
-   `📦 有新版本：v[已安裝] → v[最新]。執行 npx the-product-playbook 更新`
-4. 若檢查失敗、逾時或版本一致 → 不顯示任何訊息，靜默繼續
-5. 無論結果如何都繼續下一步 — 絕不因版本檢查而阻塞
+- 執行：`timeout 3 npm view the-product-playbook version 2>/dev/null || echo ""`
+- 讀取已安裝版本：`cat ~/.claude/skills/the-product-playbook/.version 2>/dev/null || echo ""`
+- 若 npm 版本較新，顯示：`📦 有新版本：v[已安裝] → v[最新]。執行 npx the-product-playbook 更新`
+- 若檢查失敗、逾時或版本一致 → 不顯示任何訊息，靜默繼續
+- 無論結果如何都繼續下一步 — 絕不因版本檢查而阻塞
 
-1. **進度檔案檢查**：檢查專案目錄下是否存在 `.product-playbook-progress.md`。若存在，優先詢問是否恢復進度（規則見 `references/rules-progress.md`）。
+### 進度檔案檢查
 
-2. **產品上下文檢查**：檢查專案目錄下是否存在 `.product-context.md`（規則見 `references/rules-context.md`）。
+檢查專案目錄下是否存在 `.product-playbook-progress.md`。若存在，優先詢問是否恢復進度（規則見 `references/rules-progress.md`）。
+
+### 產品上下文檢查
+
+檢查專案目錄下是否存在 `.product-context.md`（規則見 `references/rules-context.md`）。
    - 若存在且有完整策略資訊 → 顯示「📦 偵測到 **[產品名]** 的產品上下文，將作為本次規劃的基線。」
    - 若存在但僅有部分資訊（有 Decision History 但缺 Core Strategy）→ 顯示已知資訊摘要，提供補充選項
    - 若不存在 → 記錄此狀態，在進入功能擴充或改版模式時觸發 Context Bootstrap

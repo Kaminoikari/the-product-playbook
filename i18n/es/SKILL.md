@@ -50,19 +50,21 @@ Cuando el usuario activa este skill, usa un enfoque de **confirmación progresiv
 
 **Paso 1: Confirmar modo** (siempre preguntar, a menos que el usuario ya lo haya especificado)
 
-Presenta las siguientes opciones:
-- 🚀 **Modo Rápido** — Produce una dirección accionable en 30 minutos (JTBD → PR-FAQ → North Star)
-- 📦 **Modo Completo** — Recorre todos los frameworks para producir un documento de planificación entregable
-- 🔄 **Modo Revisión** — Optimiza un producto existente (con usuarios y datos existentes)
-- ✏️ **Modo Personalizado** — Elige tu propia combinación de frameworks o nivel de completitud
-- ⚡ **Modo Directo a Solución** — El problema es conocido; salta Discovery e ir directo a soluciones
+Selecciona un modo (ingresa un número o nombre), o simplemente cuéntame sobre tu producto y te recomendaré el mejor modo:
+
+1. 🚀 **Modo Rápido** — 3 pasos, ~30 min (JTBD → PR-FAQ → North Star)
+2. 📦 **Modo Completo** — 20 pasos, documento de planificación integral
+3. 🔄 **Modo Revisión** — 12 pasos, optimizar producto existente
+4. ✏️ **Modo Personalizado** — Elige tu propia combinación de frameworks
+5. ⚡ **Modo Build** — 7 pasos, salta Discovery, directo a solución
+6. 🔧 **Modo Extensión de Feature** — 4 pasos, agregar funcionalidad a producto existente
 
 Activadores rápidos:
 - "Tengo una nueva idea y quiero validarla rápido" → auto-aplicar Modo Rápido
 - "Quiero crear un plan de producto completo" → auto-aplicar Modo Completo
-- "Ya sé lo que quiero construir" → auto-aplicar Modo Directo a Solución
+- "Ya sé lo que quiero construir" → auto-aplicar Modo Build
 - "Necesito renovar mi producto" → auto-aplicar Modo Revisión
-- "Quiero agregar una funcionalidad a mi producto existente" o "agregar una nueva funcionalidad" → auto-aplicar Modo Directo a Solución → ruta de Extensión de Feature (4 pasos, ver `references/rules-build.md`)
+- "Quiero agregar una funcionalidad a mi producto existente" o "agregar una nueva funcionalidad" → auto-aplicar Modo Extensión de Feature
 
 **Paso 2: Confirmar tipo de producto y audiencia** (preguntar solo después de confirmar el modo)
 
@@ -91,8 +93,8 @@ Este producto es:
 | 📦 **Modo Completo** | Recorre todos los frameworks; produce un plan entregable | Todos los frameworks (ver secuencia de pasos) | Planificación de nuevo producto, grandes renovaciones |
 | 🔄 **Modo Revisión** | Optimiza un producto existente con datos de usuarios y una base de funcionalidades | Análisis estado actual → Síntesis de puntos de dolor → Solución → Validación | Renovación de funcionalidades, optimización UX, reposicionamiento de producto |
 | ✏️ **Modo Personalizado** | Elige tu propia combinación de frameworks o nivel de completitud | Especificado por el usuario | Llenar vacíos específicos |
-| ⚡ **Modo Directo a Solución** | Salta Discovery, ir directo a soluciones | PR-FAQ + Pre-mortem + GEM/RICE + MVP + North Star | El problema es conocido; se necesita ejecución rápida |
-| 🔧 **Extensión de Feature (variante Directo a Solución)** | Agregar una sola funcionalidad a un producto existente; flujo simplificado de 4 pasos | Problema + Contexto → Tres soluciones paralelas + recomendación AI → Evaluación de riesgos → Alcance de ejecución | Agregar funcionalidades a un producto existente; requisitos claros |
+| ⚡ **Modo Build** | Salta Discovery, ir directo a soluciones | PR-FAQ + Pre-mortem + GEM/RICE + MVP + North Star | El problema es conocido; se necesita ejecución rápida |
+| 🔧 **Modo Extensión de Feature** | Agregar una sola funcionalidad a un producto existente; flujo simplificado de 4 pasos | Problema + Contexto → Tres soluciones paralelas + recomendación AI → Evaluación de riesgos → Alcance de ejecución | Agregar funcionalidades a un producto existente; requisitos claros |
 
 ### 📊 Niveles de Completitud (solo Modo Personalizado)
 
@@ -125,7 +127,8 @@ Después de confirmar el modo, **lee el archivo de reglas del modo correspondien
 | 📦 Modo Completo | `references/rules-full.md` |
 | 🔄 Modo Revisión | `references/rules-revision.md` |
 | ✏️ Modo Personalizado | `references/rules-custom.md` |
-| ⚡ Modo Directo a Solución | `references/rules-build.md` |
+| ⚡ Modo Build | `references/rules-build.md` |
+| 🔧 Modo Extensión de Feature | `references/rules-build.md` (sección de ruta de Extensión de Feature) |
 
 Después de confirmar el tipo de producto, lee `references/rules-product-type.md` para ajustes de diferenciación B2B/B2C.
 
@@ -143,16 +146,20 @@ Cuando el usuario pida listar frameworks o use comandos complementarios, lee `re
 
 Antes de comenzar, verifica silenciosamente si hay una versión más nueva disponible:
 
-1. Ejecuta: `timeout 3 npm view the-product-playbook version 2>/dev/null || echo ""`
-2. Lee la versión instalada: `cat ~/.claude/skills/the-product-playbook/.version 2>/dev/null || echo ""`
-3. Si la versión de npm es más nueva que la versión instalada, muestra:
+- Ejecuta: `timeout 3 npm view the-product-playbook version 2>/dev/null || echo ""`
+- Lee la versión instalada: `cat ~/.claude/skills/the-product-playbook/.version 2>/dev/null || echo ""`
+- Si la versión de npm es más nueva que la versión instalada, muestra:
    `📦 Actualización disponible: v[instalada] → v[última]. Ejecute: npx the-product-playbook`
-4. Si la verificación falla, se agota el tiempo, o las versiones coinciden → no digas nada, continúa silenciosamente
-5. Procede al siguiente paso sin importar el resultado — nunca bloquees por la verificación de versión
+- Si la verificación falla, se agota el tiempo, o las versiones coinciden → no digas nada, continúa silenciosamente
+- Procede al siguiente paso sin importar el resultado — nunca bloquees por la verificación de versión
 
-1. **Verificación de archivo de progreso**: Verifica si `.product-playbook-progress.md` existe en el directorio del proyecto. Si existe, pregunta si el usuario quiere retomar desde donde lo dejó (reglas en `references/rules-progress.md`).
+### Verificación de archivo de progreso
 
-2. **Verificación de contexto de producto**: Verifica si `.product-context.md` existe en el directorio del proyecto (reglas en `references/rules-context.md`).
+Verifica si `.product-playbook-progress.md` existe en el directorio del proyecto. Si existe, pregunta si el usuario quiere retomar desde donde lo dejó (reglas en `references/rules-progress.md`).
+
+### Verificación de contexto de producto
+
+Verifica si `.product-context.md` existe en el directorio del proyecto (reglas en `references/rules-context.md`).
    - Si existe con información de estrategia completa → Mostrar "📦 Contexto de producto detectado para **[Nombre del Producto]**. Esto servirá como línea base para esta sesión de planificación."
    - Si existe con solo información parcial (tiene Historial de Decisiones pero falta Estrategia Central) → Mostrar un resumen de información conocida y ofrecer opciones para complementar
    - Si no existe → Registrar este estado; activar Context Bootstrap al entrar en modo Extensión de Feature o Revisión
