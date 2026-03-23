@@ -1,7 +1,7 @@
 {
   "name": "the-product-playbook",
-  "version": "1.0.2",
-  "description": "世界頂尖產品規劃實作框架引導工具 for Claude Code",
+  "version": "2.0.0",
+  "description": "World-class product planning AI skill for Claude Code — 22 PM frameworks, 6 modes, from idea to dev handoff",
   "bin": {
     "the-product-playbook": "./install.sh"
   },
@@ -30,6 +30,8 @@
     "SKILL.md",
     "commands/",
     "references/",
+    "i18n/",
+    "README.zh-TW.md",
     "LICENSE"
   ]
 }
