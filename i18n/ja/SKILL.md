@@ -38,11 +38,7 @@ description: |
 - **Español** → Ask (in Spanish): "La versión instalada es en japonés. ¿Desea cambiar a español? Puedo instalarlo automáticamente."
 - **한국어** → Ask (in Korean): "현재 일본어 버전이 설치되어 있습니다. 한국어 버전으로 전환하시겠습니까? 자동으로 설치할 수 있습니다."
 
-ユーザーが確認した場合、以下を実行：
-```bash
-curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash -s -- --lang [detected_lang_code]
-```
-新しくインストールされたSKILL.mdを再読み込みし、最初からやり直してください。
+ユーザーが確認した場合、インストールディレクトリの `i18n/[検出された言語コード]/SKILL.md` を直接読み込んで従ってください。全言語がプリインストール済みで、ダウンロードは不要です。
 
 ユーザーが辞退した場合、現在の言語（日本語）で続行してください。
 

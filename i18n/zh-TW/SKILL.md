@@ -38,11 +38,7 @@ description: |
 - **Español** → Ask (in Spanish): "La versión instalada es en chino tradicional. ¿Desea cambiar a español? Puedo instalarlo automáticamente."
 - **한국어** → Ask (in Korean): "현재 번체 중국어 버전이 설치되어 있습니다. 한국어 버전으로 전환하시겠습니까? 자동으로 설치할 수 있습니다."
 
-如果使用者確認，執行：
-```bash
-curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash -s -- --lang [detected_lang_code]
-```
-然後重新讀取新安裝的 SKILL.md，從頭開始。
+如果使用者確認，直接讀取並遵循安裝目錄中的 `i18n/[偵測到的語系代碼]/SKILL.md`。所有語系已預裝，無需重新下載。
 
 如果使用者拒絕，繼續使用目前語言（繁體中文）。
 

@@ -38,11 +38,7 @@ Si el usuario escribe en un idioma diferente:
 - **简体中文** → Ask (in Chinese): "当前安装的是西班牙语版。是否要切换到简体中文版？我可以直接帮你安装。"
 - **한국어** → Ask (in Korean): "현재 스페인어 버전이 설치되어 있습니다. 한국어 버전으로 전환하시겠습니까? 자동으로 설치할 수 있습니다."
 
-Si el usuario confirma, ejecutar:
-```bash
-curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash -s -- --lang [detected_lang_code]
-```
-Luego volver a leer el SKILL.md recién instalado y continuar desde el principio.
+Si el usuario confirma, lea y siga `i18n/[código_idioma_detectado]/SKILL.md` del directorio de instalación. Todos los idiomas están preinstalados — no se necesita descarga.
 
 Si el usuario declina, continuar en el idioma actual (Español).
 

@@ -38,11 +38,7 @@ description: |
 - **Español** → Ask (in Spanish): "La versión instalada es en chino simplificado. ¿Desea cambiar a español? Puedo instalarlo automáticamente."
 - **한국어** → Ask (in Korean): "현재 간체 중국어 버전이 설치되어 있습니다. 한국어 버전으로 전환하시겠습니까? 자동으로 설치할 수 있습니다."
 
-如果用户确认，执行：
-```bash
-curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash -s -- --lang [detected_lang_code]
-```
-然后重新读取新安装的 SKILL.md，从头开始。
+如果用户确认，直接读取并遵循安装目录中的 `i18n/[检测到的语言代码]/SKILL.md`。所有语言已预装，无需重新下载。
 
 如果用户拒绝，继续使用当前语言（简体中文）。
 

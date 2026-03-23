@@ -38,11 +38,7 @@ If the user writes in a different language:
 - **Español** → Ask (in Spanish): "La versión instalada es en inglés. ¿Desea cambiar a español? Puedo instalarlo automáticamente."
 - **한국어** → Ask (in Korean): "현재 영어 버전이 설치되어 있습니다. 한국어 버전으로 전환하시겠습니까? 자동으로 설치할 수 있습니다."
 
-If the user confirms, execute:
-```bash
-curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash -s -- --lang [detected_lang_code]
-```
-Then re-read the newly installed SKILL.md and continue from the beginning.
+If the user confirms, read and follow `i18n/[detected_lang_code]/SKILL.md` from the skill installation directory instead of this file. All languages are pre-installed — no download needed.
 
 If the user declines, continue in the current language (English).
 

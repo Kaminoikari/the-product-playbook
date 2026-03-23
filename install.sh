@@ -210,10 +210,7 @@ do_install() {
     script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
   fi
 
-  # Determine i18n source path
-  local i18n_subdir="i18n/$INSTALL_LANG"
-
-  if [ -n "$script_dir" ] && [ -d "$script_dir/$i18n_subdir" ]; then
+  if [ -n "$script_dir" ] && [ -d "$script_dir/i18n" ]; then
     info "$(msg local_repo)"
     src_dir="$script_dir"
     commit_hash=$(git -C "$src_dir" rev-parse --short HEAD 2>/dev/null || echo "")
@@ -230,7 +227,6 @@ do_install() {
       commit_hash=$(grep '"version"' "$src_dir/package.json" | head -1 | sed 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/')
     fi
     commit_hash="${commit_hash:-unknown}"
-    i18n_subdir=""  # use root layout
   else
     info "$(msg downloading)"
     git clone --depth 1 "$REPO_URL" "$TMP_DIR" 2>/dev/null
@@ -248,7 +244,7 @@ do_install() {
   if [ -f "$SKILL_DIR/.version" ]; then
     local installed_version
     installed_version=$(cat "$SKILL_DIR/.version")
-    if [ "$installed_version" = "${commit_hash}-${INSTALL_LANG}" ] && [ "$commit_hash" != "unknown" ]; then
+    if [ "$installed_version" = "${commit_hash}" ] && [ "$commit_hash" != "unknown" ]; then
       ok "$(msg up_to_date) ($commit_hash)"
       printf "\n$(msg installed_at)\n"
       printf "  Skill      → ${BOLD}%s${RESET}\n" "$SKILL_DIR"
@@ -267,46 +263,49 @@ do_install() {
     mkdir -p "$SKILL_DIR"
   fi
 
-  # Determine file source paths
-  local skill_src=""
-  local refs_src=""
-  local cmds_src=""
+  # Determine default language source paths
+  local default_lang_dir="$src_dir/i18n/$INSTALL_LANG"
+  local has_i18n=false
 
-  if [ -n "$i18n_subdir" ] && [ -d "$src_dir/$i18n_subdir" ]; then
-    skill_src="$src_dir/$i18n_subdir/SKILL.md"
-    refs_src="$src_dir/$i18n_subdir/references"
-    cmds_src="$src_dir/$i18n_subdir/commands"
-  else
-    skill_src="$src_dir/SKILL.md"
-    refs_src="$src_dir/references"
-    cmds_src="$src_dir/commands"
+  if [ -d "$src_dir/i18n" ]; then
+    has_i18n=true
   fi
 
   # Copy Skill files
   info "$(msg installing_skill)"
-  cp "$skill_src" "$SKILL_DIR/"
   cp "$src_dir/LICENSE" "$SKILL_DIR/"
 
-  if [ -d "$refs_src" ]; then
-    cp -r "$refs_src" "$SKILL_DIR/"
+  if [ "$has_i18n" = true ]; then
+    # Install ALL languages
+    cp -r "$src_dir/i18n" "$SKILL_DIR/"
+    ok "Installed all 6 languages to $SKILL_DIR/i18n/"
+
+    # Set default language: copy SKILL.md, references/, commands/ from default lang
+    if [ -d "$default_lang_dir" ]; then
+      cp "$default_lang_dir/SKILL.md" "$SKILL_DIR/"
+      cp -r "$default_lang_dir/references" "$SKILL_DIR/"
+      cp -r "$default_lang_dir/commands" "$SKILL_DIR/"
+    fi
+  else
+    # Legacy fallback: no i18n directory
+    cp "$src_dir/SKILL.md" "$SKILL_DIR/"
+    [ -d "$src_dir/references" ] && cp -r "$src_dir/references" "$SKILL_DIR/"
+    [ -d "$src_dir/commands" ] && cp -r "$src_dir/commands" "$SKILL_DIR/"
   fi
 
-  if [ -d "$cmds_src" ]; then
-    cp -r "$cmds_src" "$SKILL_DIR/"
-  fi
-
-  # Write version marker (includes language)
+  # Write version marker
   if [ "$commit_hash" != "unknown" ]; then
-    echo "${commit_hash}-${INSTALL_LANG}" > "$SKILL_DIR/.version"
+    echo "${commit_hash}" > "$SKILL_DIR/.version"
   fi
 
-  # Write language marker
+  # Write default language marker
   echo "$INSTALL_LANG" > "$SKILL_DIR/.lang"
 
   ok "$(msg skill_installed) $SKILL_DIR"
 
-  # Copy slash commands
+  # Copy slash commands to global commands dir
   info "$(msg installing_cmds)"
+  local cmds_src="$SKILL_DIR/commands"
   local cmd_count=0
   for f in "$cmds_src"/*.md; do
     [ -f "$f" ] || continue
@@ -349,30 +348,9 @@ main() {
     esac
   done
 
-  # Auto-detect or prompt interactively
+  # Auto-detect default language if not specified
   if [ -z "$INSTALL_LANG" ]; then
     INSTALL_LANG=$(detect_language)
-    # If interactive terminal and detected 'en' (default fallback), offer selection
-    if [ "$INSTALL_LANG" = "en" ] && [ -t 0 ] && [ -t 1 ]; then
-      printf "\n${BOLD}Select language / 選擇語言:${RESET}\n"
-      printf "  ${BOLD}1)${RESET} English\n"
-      printf "  ${BOLD}2)${RESET} 繁體中文\n"
-      printf "  ${BOLD}3)${RESET} 日本語\n"
-      printf "  ${BOLD}4)${RESET} 简体中文\n"
-      printf "  ${BOLD}5)${RESET} Español\n"
-      printf "  ${BOLD}6)${RESET} 한국어\n"
-      printf "\n${BLUE}▸${RESET} Press Enter for English, or type 1-6: "
-      read -r choice
-      case "${choice:-1}" in
-        1|"") INSTALL_LANG="en" ;;
-        2) INSTALL_LANG="zh-TW" ;;
-        3) INSTALL_LANG="ja" ;;
-        4) INSTALL_LANG="zh-CN" ;;
-        5) INSTALL_LANG="es" ;;
-        6) INSTALL_LANG="ko" ;;
-        *) INSTALL_LANG="en" ;;
-      esac
-    fi
   fi
 
   # Validate language (fallback to en if unsupported)
