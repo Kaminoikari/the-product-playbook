@@ -82,10 +82,10 @@ rm -rf /tmp/the-product-playbook
 
 ```bash
 # curl
-curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash -s -- --lang zh-CN
+curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash
 
 # npx（需要 Node.js）
-npx the-product-playbook --lang zh-CN
+npx the-product-playbook
 ```
 
 解除安装：

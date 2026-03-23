@@ -82,10 +82,10 @@ rm -rf /tmp/the-product-playbook
 
 ```bash
 # curl
-curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash -s -- --lang en
+curl -fsSL https://raw.githubusercontent.com/kaminoikari/the-product-playbook/main/install.sh | bash
 
 # npx (requires Node.js)
-npx the-product-playbook --lang en
+npx the-product-playbook
 ```
 
 Uninstall:
