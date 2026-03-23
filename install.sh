@@ -240,19 +240,32 @@ do_install() {
   # Create directories
   mkdir -p "$SKILL_DIR" "$COMMANDS_DIR"
 
+  # Get current package version (semver)
+  local pkg_version=""
+  if [ -f "$src_dir/package.json" ]; then
+    pkg_version=$(grep '"version"' "$src_dir/package.json" | head -1 | sed 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/')
+  fi
+
   # Version check: skip if already up to date
   if [ -f "$SKILL_DIR/.version" ]; then
     local installed_version
     installed_version=$(cat "$SKILL_DIR/.version")
-    if [ "$installed_version" = "${commit_hash}" ] && [ "$commit_hash" != "unknown" ]; then
-      ok "$(msg up_to_date) ($commit_hash)"
-      printf "\n$(msg installed_at)\n"
-      printf "  Skill      → ${BOLD}%s${RESET}\n" "$SKILL_DIR"
-      printf "  Commands   → ${BOLD}%s${RESET}/product-*.md\n" "$COMMANDS_DIR"
-      printf "\n$(msg get_started)\n"
-      printf "  ${BOLD}claude${RESET} $(msg start_claude)\n"
-      printf "  ${BLUE}$(msg example_cmd)${RESET}\n\n"
-      return 0
+    # Detect legacy format (git hash, not semver) — force update
+    if echo "$installed_version" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+      # Semver format — compare with current package version
+      if [ "$installed_version" = "$pkg_version" ] && [ -n "$pkg_version" ]; then
+        ok "$(msg up_to_date) (v$pkg_version)"
+        printf "\n$(msg installed_at)\n"
+        printf "  Skill      → ${BOLD}%s${RESET}\n" "$SKILL_DIR"
+        printf "  Commands   → ${BOLD}%s${RESET}/product-*.md\n" "$COMMANDS_DIR"
+        printf "\n$(msg get_started)\n"
+        printf "  ${BOLD}claude${RESET} $(msg start_claude)\n"
+        printf "  ${BLUE}$(msg example_cmd)${RESET}\n\n"
+        return 0
+      fi
+    else
+      # Legacy format (git hash or unknown) — always update
+      warn "Detected legacy installation (v1.x). Upgrading to v${pkg_version:-latest}..."
     fi
   fi
 
