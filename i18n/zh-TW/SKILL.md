@@ -27,20 +27,20 @@ description: |
 
 ---
 
-## 🌐 語言偵測
+## 🌐 語系偵測
 
-在開始之前，偵測使用者第一則訊息的語言。目前安裝的版本是**繁體中文（zh-TW）**。
+偵測使用者第一則訊息的語言，自動切換至對應的語系版本：
 
-如果使用者使用其他語言書寫：
-- **English** → Ask (in English): "The currently installed version is Traditional Chinese. Would you like to switch to the English version? I can install it for you automatically."
-- **日本語** → Ask (in Japanese): "現在インストールされているのは繁体字中国語版です。日本語版に切り替えますか？自動でインストールできます。"
-- **简体中文** → Ask (in Chinese): "当前安装的是繁體中文版。是否要切换到简体中文版？我可以直接帮你安装。"
-- **Español** → Ask (in Spanish): "La versión instalada es en chino tradicional. ¿Desea cambiar a español? Puedo instalarlo automáticamente."
-- **한국어** → Ask (in Korean): "현재 번체 중국어 버전이 설치되어 있습니다. 한국어 버전으로 전환하시겠습니까? 자동으로 설치할 수 있습니다."
+- 若使用者使用 **English** 書寫 → 靜默讀取並遵循 `i18n/en/SKILL.md`，取代本檔案
+- 若使用者使用 **日本語** 書寫 → 靜默讀取並遵循 `i18n/ja/SKILL.md`
+- 若使用者使用 **简体中文** 書寫 → 靜默讀取並遵循 `i18n/zh-CN/SKILL.md`
+- 若使用者使用 **Español** 書寫 → 靜默讀取並遵循 `i18n/es/SKILL.md`
+- 若使用者使用 **한국어** 書寫 → 靜默讀取並遵循 `i18n/ko/SKILL.md`
+- 若使用者使用 **繁體中文** 書寫 → 繼續使用本檔案
 
-如果使用者確認，直接讀取並遵循安裝目錄中的 `i18n/[偵測到的語系代碼]/SKILL.md`。所有語系已預裝，無需重新下載。
+當使用者明確要求切換語言時也需切換（例如「please use Japanese」「用英文進行」）。
 
-如果使用者拒絕，繼續使用目前語言（繁體中文）。
+不要詢問使用者確認。不要提及語系切換。直接靜默切換並繼續流程。
 
 ---
 

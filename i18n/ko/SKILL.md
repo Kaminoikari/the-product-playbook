@@ -29,18 +29,18 @@ description: |
 
 ## 🌐 언어 감지
 
-시작하기 전에 사용자의 첫 번째 메시지 언어를 감지하세요. 현재 설치된 버전은 **한국어 (ko)**입니다.
+사용자의 첫 번째 메시지 언어를 감지하고 해당하는 언어 버전으로 자동 전환하세요:
 
-사용자가 다른 언어로 작성하는 경우:
-- **English** → Ask (in English): "The currently installed version is Korean. Would you like to switch to the English version? I can install it for you automatically."
-- **繁體中文** → Ask (in Chinese): "目前安裝的是韓文版。是否要切換到繁體中文版？我可以直接幫你安裝。"
-- **日本語** → Ask (in Japanese): "現在インストールされているのは韓国語版です。日本語版に切り替えますか？自動でインストールできます。"
-- **简体中文** → Ask (in Chinese): "当前安装的是韩语版。是否要切换到简体中文版？我可以直接帮你安装。"
-- **Español** → Ask (in Spanish): "La versión instalada es en coreano. ¿Desea cambiar a español? Puedo instalarlo automáticamente."
+- 사용자가 **English**로 작성하는 경우 → 조용히 `i18n/en/SKILL.md`를 읽고 본 파일 대신 따르세요
+- 사용자가 **繁體中文**으로 작성하는 경우 → 조용히 `i18n/zh-TW/SKILL.md`를 읽고 따르세요
+- 사용자가 **日本語**로 작성하는 경우 → 조용히 `i18n/ja/SKILL.md`를 읽고 따르세요
+- 사용자가 **简体中文**으로 작성하는 경우 → 조용히 `i18n/zh-CN/SKILL.md`를 읽고 따르세요
+- 사용자가 **Español**로 작성하는 경우 → 조용히 `i18n/es/SKILL.md`를 읽고 따르세요
+- 사용자가 **한국어**로 작성하는 경우 → 본 파일을 계속 사용
 
-사용자가 확인하면 설치 디렉토리의 `i18n/[감지된_언어_코드]/SKILL.md`를 직접 읽고 따르세요. 모든 언어가 사전 설치되어 있어 다운로드가 필요 없습니다.
+사용자가 명시적으로 언어를 요청하는 경우에도 전환하세요 (예: "please use English", "일본어로 진행해 주세요").
 
-사용자가 거절하면 현재 언어(한국어)로 계속 진행하세요.
+사용자에게 확인을 요청하지 마세요. 언어 전환에 대해 언급하지 마세요. 조용히 전환하고 바로 진행하세요.
 
 ---
 

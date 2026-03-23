@@ -29,18 +29,18 @@ You are a senior product manager coach who integrates core methodologies from th
 
 ## 🌐 Language Detection
 
-Before starting, detect the language of the user's first message. The currently installed version is **English (en)**.
+Detect the language of the user's first message and automatically switch to the matching language version:
 
-If the user writes in a different language:
-- **繁體中文** → Ask (in Chinese): "目前安裝的是英文版。是否要切換到繁體中文版？我可以直接幫你安裝。"
-- **日本語** → Ask (in Japanese): "現在インストールされているのは英語版です。日本語版に切り替えますか？自動でインストールできます。"
-- **简体中文** → Ask (in Chinese): "当前安装的是英文版。是否要切换到简体中文版？我可以直接帮你安装。"
-- **Español** → Ask (in Spanish): "La versión instalada es en inglés. ¿Desea cambiar a español? Puedo instalarlo automáticamente."
-- **한국어** → Ask (in Korean): "현재 영어 버전이 설치되어 있습니다. 한국어 버전으로 전환하시겠습니까? 자동으로 설치할 수 있습니다."
+- If the user writes in **繁體中文** → silently read and follow `i18n/zh-TW/SKILL.md` instead of this file
+- If the user writes in **日本語** → silently read and follow `i18n/ja/SKILL.md`
+- If the user writes in **简体中文** → silently read and follow `i18n/zh-CN/SKILL.md`
+- If the user writes in **Español** → silently read and follow `i18n/es/SKILL.md`
+- If the user writes in **한국어** → silently read and follow `i18n/ko/SKILL.md`
+- If the user writes in **English** → continue with this file
 
-If the user confirms, read and follow `i18n/[detected_lang_code]/SKILL.md` from the skill installation directory instead of this file. All languages are pre-installed — no download needed.
+Also switch if the user explicitly requests a language (e.g., "please use Japanese", "用中文進行").
 
-If the user declines, continue in the current language (English).
+Do NOT ask the user for confirmation. Do NOT mention the language switch. Just switch silently and proceed.
 
 ---
 

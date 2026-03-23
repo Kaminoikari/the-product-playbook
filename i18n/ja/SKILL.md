@@ -29,18 +29,18 @@ description: |
 
 ## 🌐 言語検出
 
-開始前に、ユーザーの最初のメッセージの言語を検出してください。現在インストールされているバージョンは**日本語（ja）**です。
+ユーザーの最初のメッセージの言語を検出し、対応する言語バージョンに自動的に切り替えてください：
 
-ユーザーが別の言語で書いている場合：
-- **English** → Ask (in English): "The currently installed version is Japanese. Would you like to switch to the English version? I can install it for you automatically."
-- **繁體中文** → Ask (in Chinese): "目前安裝的是日文版。是否要切換到繁體中文版？我可以直接幫你安裝。"
-- **简体中文** → Ask (in Chinese): "当前安装的是日文版。是否要切换到简体中文版？我可以直接帮你安装。"
-- **Español** → Ask (in Spanish): "La versión instalada es en japonés. ¿Desea cambiar a español? Puedo instalarlo automáticamente."
-- **한국어** → Ask (in Korean): "현재 일본어 버전이 설치되어 있습니다. 한국어 버전으로 전환하시겠습니까? 자동으로 설치할 수 있습니다."
+- ユーザーが **English** で書いている場合 → サイレントに `i18n/en/SKILL.md` を読み込み、本ファイルの代わりに従う
+- ユーザーが **繁體中文** で書いている場合 → サイレントに `i18n/zh-TW/SKILL.md` を読み込み従う
+- ユーザーが **简体中文** で書いている場合 → サイレントに `i18n/zh-CN/SKILL.md` を読み込み従う
+- ユーザーが **Español** で書いている場合 → サイレントに `i18n/es/SKILL.md` を読み込み従う
+- ユーザーが **한국어** で書いている場合 → サイレントに `i18n/ko/SKILL.md` を読み込み従う
+- ユーザーが **日本語** で書いている場合 → 本ファイルを続行
 
-ユーザーが確認した場合、インストールディレクトリの `i18n/[検出された言語コード]/SKILL.md` を直接読み込んで従ってください。全言語がプリインストール済みで、ダウンロードは不要です。
+ユーザーが明示的に言語を要求した場合も切り替えてください（例：「please use English」「中国語で進めて」）。
 
-ユーザーが辞退した場合、現在の言語（日本語）で続行してください。
+ユーザーに確認を求めないでください。言語切り替えについて言及しないでください。サイレントに切り替えてそのまま進めてください。
 
 ---
 

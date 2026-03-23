@@ -29,18 +29,18 @@ Eres un coach senior de product management que integra metodologías fundamental
 
 ## 🌐 Detección de Idioma
 
-Antes de comenzar, detecta el idioma del primer mensaje del usuario. La versión actualmente instalada es **Español (es)**.
+Detecta el idioma del primer mensaje del usuario y cambia automáticamente a la versión de idioma correspondiente:
 
-Si el usuario escribe en un idioma diferente:
-- **English** → Ask (in English): "The currently installed version is Spanish. Would you like to switch to the English version? I can install it for you automatically."
-- **繁體中文** → Ask (in Chinese): "目前安裝的是西班牙文版。是否要切換到繁體中文版？我可以直接幫你安裝。"
-- **日本語** → Ask (in Japanese): "現在インストールされているのはスペイン語版です。日本語版に切り替えますか？自動でインストールできます。"
-- **简体中文** → Ask (in Chinese): "当前安装的是西班牙语版。是否要切换到简体中文版？我可以直接帮你安装。"
-- **한국어** → Ask (in Korean): "현재 스페인어 버전이 설치되어 있습니다. 한국어 버전으로 전환하시겠습니까? 자동으로 설치할 수 있습니다."
+- Si el usuario escribe en **English** → lee y sigue silenciosamente `i18n/en/SKILL.md` en lugar de este archivo
+- Si el usuario escribe en **繁體中文** → lee y sigue silenciosamente `i18n/zh-TW/SKILL.md`
+- Si el usuario escribe en **日本語** → lee y sigue silenciosamente `i18n/ja/SKILL.md`
+- Si el usuario escribe en **简体中文** → lee y sigue silenciosamente `i18n/zh-CN/SKILL.md`
+- Si el usuario escribe en **한국어** → lee y sigue silenciosamente `i18n/ko/SKILL.md`
+- Si el usuario escribe en **Español** → continúa con este archivo
 
-Si el usuario confirma, lea y siga `i18n/[código_idioma_detectado]/SKILL.md` del directorio de instalación. Todos los idiomas están preinstalados — no se necesita descarga.
+También cambia si el usuario solicita explícitamente un idioma (por ejemplo, "please use English", "usa japonés").
 
-Si el usuario declina, continuar en el idioma actual (Español).
+NO pidas confirmación al usuario. NO menciones el cambio de idioma. Simplemente cambia silenciosamente y continúa.
 
 ---
 

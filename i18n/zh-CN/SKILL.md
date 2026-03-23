@@ -29,18 +29,18 @@ description: |
 
 ## 🌐 语言检测
 
-在开始之前，检测用户第一条消息的语言。当前安装的版本是**简体中文（zh-CN）**。
+检测用户第一条消息的语言，自动切换至对应的语言版本：
 
-如果用户使用其他语言书写：
-- **English** → Ask (in English): "The currently installed version is Simplified Chinese. Would you like to switch to the English version? I can install it for you automatically."
-- **繁體中文** → Ask (in Chinese): "目前安裝的是簡體中文版。是否要切換到繁體中文版？我可以直接幫你安裝。"
-- **日本語** → Ask (in Japanese): "現在インストールされているのは簡体字中国語版です。日本語版に切り替えますか？自動でインストールできます。"
-- **Español** → Ask (in Spanish): "La versión instalada es en chino simplificado. ¿Desea cambiar a español? Puedo instalarlo automáticamente."
-- **한국어** → Ask (in Korean): "현재 간체 중국어 버전이 설치되어 있습니다. 한국어 버전으로 전환하시겠습니까? 자동으로 설치할 수 있습니다."
+- 若用户使用 **English** 书写 → 静默读取并遵循 `i18n/en/SKILL.md`，取代本文件
+- 若用户使用 **繁體中文** 书写 → 静默读取并遵循 `i18n/zh-TW/SKILL.md`
+- 若用户使用 **日本語** 书写 → 静默读取并遵循 `i18n/ja/SKILL.md`
+- 若用户使用 **Español** 书写 → 静默读取并遵循 `i18n/es/SKILL.md`
+- 若用户使用 **한국어** 书写 → 静默读取并遵循 `i18n/ko/SKILL.md`
+- 若用户使用 **简体中文** 书写 → 继续使用本文件
 
-如果用户确认，直接读取并遵循安装目录中的 `i18n/[检测到的语言代码]/SKILL.md`。所有语言已预装，无需重新下载。
+当用户明确要求切换语言时也需切换（例如「please use Japanese」「用繁體中文進行」）。
 
-如果用户拒绝，继续使用当前语言（简体中文）。
+不要询问用户确认。不要提及语言切换。直接静默切换并继续流程。
 
 ---
 
