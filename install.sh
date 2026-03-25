@@ -276,8 +276,10 @@ do_install() {
     mkdir -p "$SKILL_DIR"
   fi
 
-  # Determine default language source paths
-  local default_lang_dir="$src_dir/i18n/$INSTALL_LANG"
+  # SKILL.md default language is always English; runtime language detection
+  # in SKILL.md handles switching to the user's language dynamically.
+  # INSTALL_LANG is only used for CLI installer messages (msg() function).
+  local en_lang_dir="$src_dir/i18n/en"
   local has_i18n=false
 
   if [ -d "$src_dir/i18n" ]; then
@@ -293,11 +295,12 @@ do_install() {
     cp -r "$src_dir/i18n" "$SKILL_DIR/"
     ok "Installed all 6 languages to $SKILL_DIR/i18n/"
 
-    # Set default language: copy SKILL.md, references/, commands/ from default lang
-    if [ -d "$default_lang_dir" ]; then
-      cp "$default_lang_dir/SKILL.md" "$SKILL_DIR/"
-      cp -r "$default_lang_dir/references" "$SKILL_DIR/"
-      cp -r "$default_lang_dir/commands" "$SKILL_DIR/"
+    # Set default language: always use English as the entry point
+    # Runtime language detection in SKILL.md will switch to i18n/{lang}/ as needed
+    if [ -d "$en_lang_dir" ]; then
+      cp "$en_lang_dir/SKILL.md" "$SKILL_DIR/"
+      cp -r "$en_lang_dir/references" "$SKILL_DIR/"
+      cp -r "$en_lang_dir/commands" "$SKILL_DIR/"
     fi
   else
     # Legacy fallback: no i18n directory
@@ -317,8 +320,8 @@ do_install() {
     echo "$commit_hash" > "$SKILL_DIR/.version"
   fi
 
-  # Write default language marker
-  echo "$INSTALL_LANG" > "$SKILL_DIR/.lang"
+  # Write default language marker (always English — runtime detection handles switching)
+  echo "en" > "$SKILL_DIR/.lang"
 
   ok "$(msg skill_installed) $SKILL_DIR"
 
@@ -392,10 +395,8 @@ main() {
       do_uninstall
       ;;
     --update)
-      # Update: detect installed language, then re-install from remote
-      if [ -f "$SKILL_DIR/.lang" ]; then
-        INSTALL_LANG=$(cat "$SKILL_DIR/.lang")
-      fi
+      # Update: re-install from remote (SKILL.md always defaults to English;
+      # INSTALL_LANG only affects CLI messages via detect_language)
       # Force re-download by removing version file
       rm -f "$SKILL_DIR/.version"
       do_install
