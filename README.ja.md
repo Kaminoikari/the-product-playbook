@@ -54,7 +54,18 @@ The Product Playbookは、ゼロから一まで体系的にプロダクト企画
 3. `product-playbook/`フォルダ全体をアップロード
 4. 会話で「プロダクトを作りたい」と言ってスキルをトリガー
 
-### オプション2：Claude Codeスキル（推奨）
+### 方法2：Claude Code Plugin（推奨）
+
+Claude Code で以下を実行：
+
+```
+/install marketplace kaminoikari/product-playbook
+/install product-playbook
+```
+
+> 最初のコマンドでマーケットプレイスを追加（初回のみ）、2番目でプラグインをインストールします。
+
+### オプション3：Claude Codeスキル
 
 > 💡 更新するには：インストールコマンドを再実行するだけで最新バージョンに上書きされます。
 

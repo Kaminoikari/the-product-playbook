@@ -140,17 +140,7 @@ description: |
 
 ## 啟動流程
 
-**啟動前置檢查**：觸發 skill 後，依序執行三項檢查：
-
-### 版本檢查（靜默、非阻塞）
-
-啟動前，靜默檢查是否有更新版本：
-
-- 執行：`timeout 3 npm view product-playbook version 2>/dev/null || echo ""`
-- 讀取已安裝版本：`cat ~/.claude/skills/product-playbook/.version 2>/dev/null || echo ""`
-- 若 npm 版本較新，顯示：`📦 有新版本：v[已安裝] → v[最新]。執行 npx product-playbook 更新`
-- 若檢查失敗、逾時或版本一致 → 不顯示任何訊息，靜默繼續
-- 無論結果如何都繼續下一步 — 絕不因版本檢查而阻塞
+**啟動前置檢查**：觸發 skill 後，依序執行兩項檢查：
 
 ### 進度檔案檢查
 

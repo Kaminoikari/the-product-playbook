@@ -3,8 +3,8 @@ description: Build Mode — Problem is known, skip Discovery, go straight to sol
 argument-hint: <problem description>
 ---
 
-Please read ~/.claude/skills/product-playbook/SKILL.md.
-Then read ~/.claude/skills/product-playbook/references/rules-build.md for the step sequence.
+Invoke the product-playbook skill.
+Then read references/rules-build.md for the step sequence.
 When executing each step, load the corresponding reference files as indicated in rules-build.md.
 
 Execution mode: ⚡ Build Mode

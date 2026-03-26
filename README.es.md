@@ -54,7 +54,18 @@ Quiero construir un producto
 3. Sube toda la carpeta `product-playbook/`
 4. Di "Quiero construir un producto" en una conversación para activar el skill
 
-### Opción 2: Skill de Claude Code (Recomendado)
+### Opción 2: Claude Code Plugin (Recomendado)
+
+En Claude Code, ejecuta:
+
+```
+/install marketplace kaminoikari/product-playbook
+/install product-playbook
+```
+
+> El primer comando agrega el marketplace (solo una vez). El segundo instala el plugin.
+
+### Opción 3: Skill de Claude Code
 
 > 💡 Para actualizar: simplemente vuelve a ejecutar el comando de instalación para sobrescribir con la última versión.
 

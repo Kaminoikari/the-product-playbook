@@ -3,8 +3,8 @@ description: Modo Extensión de Funcionalidad — Añade una funcionalidad a un 
 argument-hint: <descripción de la funcionalidad>
 ---
 
-Por favor lee ~/.claude/skills/product-playbook/SKILL.md.
-Luego lee ~/.claude/skills/product-playbook/references/rules-build.md y salta directamente a la sección "🔧 Feature Extension Quick Path".
+Activa el skill product-playbook.
+Luego lee references/rules-build.md y salta directamente a la sección "🔧 Feature Extension Quick Path".
 Al ejecutar cada paso, carga los archivos de referencia correspondientes según se indica.
 
 Modo de ejecución: 🔧 Modo Extensión de Funcionalidad

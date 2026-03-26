@@ -140,18 +140,7 @@ When the user asks to list frameworks or uses supplementary commands, read `refe
 
 ## Startup Flow
 
-**Pre-launch checks**: After triggering the skill, run three checks in order:
-
-### Version Check (silent, non-blocking)
-
-Before starting, silently check if a newer version is available:
-
-- Run: `timeout 3 npm view product-playbook version 2>/dev/null || echo ""`
-- Read installed version: `cat ~/.claude/skills/product-playbook/.version 2>/dev/null || echo ""`
-- If the npm version is newer than the installed version, display:
-   `📦 Update available: v[installed] → v[latest]. Run: npx product-playbook`
-- If the check fails, times out, or versions match → say nothing, continue silently
-- Proceed to the next step regardless — never block on version check
+**Pre-launch checks**: After triggering the skill, run two checks in order:
 
 ### Progress file check
 

@@ -3,8 +3,8 @@ description: Revision Mode Product Planning — Optimize and iterate on an exist
 argument-hint: <product name and revision goals>
 ---
 
-Please read ~/.claude/skills/product-playbook/SKILL.md.
-Then read ~/.claude/skills/product-playbook/references/rules-revision.md for the step sequence.
+Invoke the product-playbook skill.
+Then read references/rules-revision.md for the step sequence.
 When executing each step, load the corresponding reference files as indicated in rules-revision.md.
 
 Execution mode: Revision Mode

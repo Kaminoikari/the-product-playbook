@@ -3,8 +3,8 @@ description: 功能扩展模式 — 在现有产品上新增单一功能，4 步
 argument-hint: <功能描述>
 ---
 
-请读取 ~/.claude/skills/product-playbook/SKILL.md。
-然后读取 ~/.claude/skills/product-playbook/references/rules-build.md，直接跳到「🔧 Feature Extension Quick Path」段落。
+触发 product-playbook skill。
+然后读取 references/rules-build.md，直接跳到「🔧 Feature Extension Quick Path」段落。
 执行各步骤时，依该段落中的 Reference 载入指示读取对应的 reference 档。
 
 执行模式：🔧 功能扩展模式

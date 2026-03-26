@@ -1,6 +1,6 @@
 {
   "name": "product-playbook",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "World-class product planning AI skill for Claude Code — 22 PM frameworks, 6 modes, from idea to dev handoff",
   "bin": {
     "product-playbook": "./install.sh"
@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/kaminoikari/product-playbook#readme",
   "files": [
+    ".claude-plugin/",
+    "skills/",
     "install.sh",
     "SKILL.md",
     "commands/",

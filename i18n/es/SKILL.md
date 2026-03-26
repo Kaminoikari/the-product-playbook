@@ -140,18 +140,7 @@ Cuando el usuario pida listar frameworks o use comandos complementarios, lee `re
 
 ## Flujo de Inicio
 
-**Verificaciones previas al lanzamiento**: Después de activar el skill, ejecuta tres verificaciones en orden:
-
-### Verificación de Versión (silenciosa, no bloqueante)
-
-Antes de comenzar, verifica silenciosamente si hay una versión más nueva disponible:
-
-- Ejecuta: `timeout 3 npm view product-playbook version 2>/dev/null || echo ""`
-- Lee la versión instalada: `cat ~/.claude/skills/product-playbook/.version 2>/dev/null || echo ""`
-- Si la versión de npm es más nueva que la versión instalada, muestra:
-   `📦 Actualización disponible: v[instalada] → v[última]. Ejecute: npx product-playbook`
-- Si la verificación falla, se agota el tiempo, o las versiones coinciden → no digas nada, continúa silenciosamente
-- Procede al siguiente paso sin importar el resultado — nunca bloquees por la verificación de versión
+**Verificaciones previas al lanzamiento**: Después de activar el skill, ejecuta dos verificaciones en orden:
 
 ### Verificación de archivo de progreso
 
