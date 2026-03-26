@@ -59,11 +59,8 @@ The Product Playbookは、ゼロから一まで体系的にプロダクト企画
 Claude Code で以下を実行：
 
 ```
-/plugin marketplace add kaminoikari/product-playbook
-/plugin install product-playbook
+/plugin install github:kaminoikari/product-playbook
 ```
-
-> 最初のコマンドでマーケットプレイスを追加（初回のみ）、2番目でプラグインをインストールします。
 
 ### オプション3：Claude Codeスキル
 

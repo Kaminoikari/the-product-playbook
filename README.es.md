@@ -59,11 +59,8 @@ Quiero construir un producto
 En Claude Code, ejecuta:
 
 ```
-/plugin marketplace add kaminoikari/product-playbook
-/plugin install product-playbook
+/plugin install github:kaminoikari/product-playbook
 ```
-
-> El primer comando agrega el marketplace (solo una vez). El segundo instala el plugin.
 
 ### Opción 3: Skill de Claude Code
 
