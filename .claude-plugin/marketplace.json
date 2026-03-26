@@ -1,13 +1,14 @@
 {
-  "version": "1.0.0",
+  "name": "product-playbook",
+  "owner": {
+    "name": "Charles Chen"
+  },
   "plugins": [
     {
       "name": "product-playbook",
+      "description": "World-class product planning AI skill — 22 PM frameworks, 6 modes, multi-language, from idea to dev handoff",
       "version": "1.0.3",
-      "source": {
-        "type": "directory",
-        "path": "."
-      }
+      "source": "./."
     }
   ]
 }
