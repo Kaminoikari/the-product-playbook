@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "plugins": [
+    {
+      "name": "product-playbook",
+      "version": "1.0.3",
+      "source": {
+        "type": "directory",
+        "path": "."
+      }
+    }
+  ]
+}
