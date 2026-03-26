@@ -54,7 +54,7 @@ Quiero construir un producto
 3. Sube toda la carpeta `product-playbook/`
 4. Di "Quiero construir un producto" en una conversación para activar el skill
 
-### Opción 2: Claude Code Plugin (Recomendado)
+### Opción 2: Claude Code Plugin
 
 En Claude Code, ejecuta:
 
@@ -65,7 +65,7 @@ En Claude Code, ejecuta:
 
 > El primer comando añade el marketplace (solo una vez). El segundo instala el plugin.
 
-### Opción 3: Skill de Claude Code
+### Opción 3: Skill de Claude Code (Recomendado)
 
 > 💡 Para actualizar: simplemente vuelve a ejecutar el comando de instalación para sobrescribir con la última versión.
 

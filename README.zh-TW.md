@@ -54,7 +54,7 @@ The Product Playbook 是一個 **Claude AI Skill**，能夠系統性地引導你
 3. 上傳整個 `product-playbook/` 資料夾
 4. 在對話中說「我想做一個產品」即可觸發
 
-### 方法二：Claude Code Plugin（推薦）
+### 方法二：Claude Code Plugin
 
 在 Claude Code 中執行：
 
@@ -65,7 +65,7 @@ The Product Playbook 是一個 **Claude AI Skill**，能夠系統性地引導你
 
 > 第一行指令新增 marketplace（只需執行一次），第二行安裝 plugin。
 
-### 方法三：Claude Code Skill
+### 方法三：Claude Code Skill（推薦）
 
 > 💡 更新方式：重新執行安裝指令即可覆蓋更新。
 
