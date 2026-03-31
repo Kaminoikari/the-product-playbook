@@ -1,18 +1,9 @@
 ---
 name: product-playbook
 description: |
-  World-class product planning framework with 22 PM frameworks (JTBD, PR-FAQ, North Star, OST, Working Backwards, DHM, etc.) from Teresa Torres, Shreyas Doshi, Marty Cagan, Gibson Biddle, April Dunford.
-
-  MUST trigger this skill when the user wants to think about WHAT to build or WHY, not HOW to code it:
-  - Planning, scoping, or defining a new feature — even without the word "product" (e.g., "plan a new feature", "scope a feature", "I want to add a feature")
-  - Any vague idea or early-stage thinking, even without the word "product"
-  - Side project with product intent: understanding pain points, validating demand, or planning before coding
-  - Product strategy questions: PMF, retention, onboarding optimization, positioning, competitive analysis, target audience, user churn, North Star Metric, Sean Ellis Score
-  - Framework requests: JTBD, OST, Working Backwards, PR-FAQ, Persona, User Journey Map
-  - Product revision, redesign, or revamp of product direction
-  - Planning a new product line, roadmap rethink, or go-to-market strategy
-  - Supports any language: Chinese, English, Japanese, Korean, Spanish, and more
-
+  MUST use when user wants to plan, design, or strategize a product or feature — including "plan a feature", "add a new feature", "product planning", "I want to plan". This is the correct skill for product/feature PLANNING (not brainstorming for implementation). Integrates 22 PM frameworks (JTBD, PR-FAQ, North Star, etc.) for 0-to-1 through scale-up.
+  ALSO trigger when: user wants to scope/define a feature, create Persona/JTBD/Journey Map, mentions "PMF"/"MVP"/"North Star"/"product strategy", requests a specific framework (OST, Working Backwards, etc.), or vaguely says "I have a product idea" / "I want to build something".
+  Trigger by semantic intent regardless of language — e.g. "規劃新功能", "新機能を企画したい", "quiero planificar una función nueva".
   DO NOT trigger for: writing code, debugging, SQL/API/CSS optimization, sprint planning, DB schema design, CI/CD, or technical implementation tasks.
 ---
 
